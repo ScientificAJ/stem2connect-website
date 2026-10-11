@@ -39,27 +39,23 @@
 .hackathon-page .assembly-controls button[aria-pressed='true'] { background: #d8ff3713; box-shadow: inset 0 -2px #d8ff37bb; }
 .hackathon-page .project-assembly figcaption { font: 500 1.1rem/1.25 'Caveat Sketch', cursive; color: #b8c7a8; }
 
-/* One continuous page of research sketches; diagrams remain large and legible. */
+/* Precise vector symbols keep the notebook cards readable at every size. */
 .hackathon-page .track-grid { border-color: #9aa87e80; border-radius: 4px 2px 6px 3px; box-shadow: 3px 4px 0 #050705, 4px 5px 0 #66795733; }
 .hackathon-page .track-grid article,
 .hackathon-page .track-grid article:nth-child(even) { background: linear-gradient(135deg, #b6d59b05, transparent 65%), #0e1510; box-shadow: none; border-right-color: #a3b69535; }
 .hackathon-page .track-grid article:nth-child(even) { background-color: #111810; }
-.hackathon-page .track-grid article::before { background: none; border: 1px solid #b5c79d2b; border-radius: 47% 53% 42% 58%; transform: rotate(-8deg); }
-.hackathon-page .track-grid article:nth-child(even)::before { border-radius: 54% 41% 53% 45%; transform: rotate(8deg); }
+.hackathon-page .track-grid article::before { display: none; }
 .hackathon-page .track-grid article::after { height: 5px; background: none; border-bottom: 1px solid var(--acid); border-radius: 50%; inset: auto 15px 5px; transform: scaleX(.19) rotate(-2deg); }
 .hackathon-page .track-id { border: 0; padding: 0 5px; margin-left: -5px; background: none; font: 600 1.18rem/1 'Caveat Sketch', cursive; color: #d0dcb8; letter-spacing: .02em; transform: rotate(-3deg); }
 .hackathon-page .track-grid .track-motif { opacity: .93; transform: rotate(-3deg); }
 .hackathon-page .track-grid .track-motif :is(path, circle, ellipse) { stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
 .hackathon-page .track-grid article:nth-child(even) .track-motif { transform: rotate(3deg); }
-.hackathon-page .track-grid .sketch-doodle { position: absolute; top: 66px; right: calc(50% - 53px); width: 106px; height: 106px; color: var(--acid); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.hackathon-page .track-grid .sketch-doodle { position: absolute; top: 66px; right: calc(50% - 53px); width: 106px; height: 106px; color: var(--acid); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; shape-rendering: geometricPrecision; pointer-events: none; }
+.hackathon-page .track-grid .sketch-doodle path { vector-effect: non-scaling-stroke; }
 .hackathon-page .track-grid article:nth-child(even) .sketch-doodle { color: var(--cyan); }
 .hackathon-page .track-grid article:has(.sketch-doodle) > .track-motif { visibility: hidden; }
-.hackathon-page .tracks.cinema-entered .sketch-doodle path { stroke-dasharray: 1; animation: doodle-ink 1.1s ease-out both; }
-.hackathon-page .tracks.cinema-entered article:nth-child(2) .sketch-doodle path { animation-delay: .1s; }
-.hackathon-page .tracks.cinema-entered article:nth-child(3) .sketch-doodle path { animation-delay: .2s; }
-.hackathon-page .tracks.cinema-entered article:nth-child(4) .sketch-doodle path { animation-delay: .3s; }
-.hackathon-page .tracks.cinema-entered article:nth-child(5) .sketch-doodle path { animation-delay: .4s; }
-@keyframes doodle-ink { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+/* Reveal complete symbols with their cards; never break a multi-part symbol into dashes. */
+.hackathon-page .sketch-doodle path { stroke-dasharray: none; stroke-dashoffset: 0; }
 .hackathon-page .ai-line > span { text-decoration: underline; text-decoration-color: #d8ff3770; text-underline-offset: .45em; text-decoration-thickness: 1px; }
 
 /* Mentor field notes: paper tape and checkmarks, without extra written content. */
@@ -112,7 +108,6 @@
   .hackathon-page .panel-label { font-size: 1.18rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hackathon-page .tracks.cinema-entered .sketch-doodle path { animation: none; stroke-dashoffset: 0; }
   .hackathon-page .section .track-motif,
   .hackathon-page .section .sketch-doodle,
   .hackathon-page .sequence-workbench .timeline > li > span::after { transition: none !important; animation: none !important; }
