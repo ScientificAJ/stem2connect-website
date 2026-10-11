@@ -1,0 +1,120 @@
+/* Sketchbook margins and pencil marks. Core copy and layouts stay unchanged. */
+.hackathon-page .section { --pencil-rule: #a3b69535; }
+.hackathon-page .section :is(.principles b, .deliverable-grid article > span, .track-id, .panel-label) { font-family: 'Caveat Sketch', cursive; }
+.hackathon-page :is(.intro, .tracks, .mentors, .deliverables) {
+  background-image: linear-gradient(#b7c7ac07 1px, transparent 1px), linear-gradient(90deg, #b7c7ac07 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+.hackathon-page .section:not(.after)::before { height: 1px; width: 73px; background: #d8ff3799; rotate: -.6deg; }
+.hackathon-page .section .section-kicker { font-family: 'Caveat Sketch', cursive; font-size: 1.15rem; font-weight: 600; letter-spacing: .02em; line-height: 1.25; }
+.hackathon-page .section .section-kicker::after { height: 6px; border-bottom: 1px solid currentColor; border-radius: 48%; background: none; opacity: .35; transform: rotate(-2deg); }
+.hackathon-page .section h2 > span:not(.motion-word),
+.hackathon-page .apply h2 > em { position: relative; display: inline-block; max-width: 100%; padding-bottom: .07em; }
+.hackathon-page .section h2 > span:not(.motion-word)::after,
+.hackathon-page .apply h2 > em::after { content: ''; position: absolute; left: 0; right: -.02em; bottom: -.04em; height: .13em; border-bottom: 2px solid var(--acid); border-radius: 12% 31% 48% 43%; transform: rotate(-1.1deg); opacity: .76; pointer-events: none; }
+.hackathon-page .section .text-link { border-bottom-style: dashed; border-bottom-color: #d8ff3770; }
+
+/* Three observations on the same sheet, with a pencilled rule at the margin. */
+.hackathon-page .principles { border-color: #83936c6b; border-radius: 2px 7px 3px 5px; background-color: #10140f; box-shadow: 3px 4px 0 #050705, 4px 5px 0 #66795733; }
+.hackathon-page .principles b,
+.hackathon-page .deliverable-grid article > span { font: 600 1.45rem/1 'Caveat Sketch', cursive; color: var(--acid); letter-spacing: 0; }
+.hackathon-page :is(.principles b, .deliverable-grid article > span)::before { display: none; }
+.hackathon-page .principles article::before { width: 19px; height: 15px; background: none; border-top: 1px solid #b4c39b8c; border-right: 1px solid #b4c39b8c; border-radius: 3px 6px 0 0; transform: rotate(7deg); opacity: .55; }
+.hackathon-page .principles article::after { height: 4px; background: none; border-bottom: 1px solid var(--cyan); border-radius: 45%; top: 5px; transform: rotate(-3deg); }
+.hackathon-page .principles article:nth-child(2)::after { background: none; border-color: var(--acid); }
+
+/* The assembly keeps its functioning controls; its frame becomes a lab notebook. */
+.hackathon-page .sequence { background-image: linear-gradient(#b7c7ac06 1px, transparent 1px), linear-gradient(90deg, #b7c7ac06 1px, transparent 1px); background-size: 36px 36px; background-color: #0c110e; }
+.hackathon-page .sequence-workbench .timeline > li > span { position: relative; align-self: start; color: #c2ccb8; background: #0c110e; font: 600 1.4rem/1.2 'Caveat Sketch', cursive; letter-spacing: 0; }
+.hackathon-page .sequence-workbench .timeline > li > span::after { content: ''; position: absolute; inset: 0 8px -1px; border: 1px solid #b8c99b80; border-radius: 43% 52% 45% 56%; transform: rotate(-9deg); pointer-events: none; }
+.hackathon-page .sequence-workbench .timeline > li:nth-child(even) > span::after { border-radius: 52% 42% 57% 43%; transform: rotate(7deg); }
+.hackathon-page .sequence-workbench .timeline > li.assembly-current > span::after { border-color: var(--acid); box-shadow: 1px 1px 0 #d8ff3726; }
+.hackathon-page .project-assembly { border: 1px solid #a6b68a77; border-radius: 3px 5px 2px 6px; background: #101a12; box-shadow: 4px 5px 0 #060a07, 5px 6px 0 #73825f4d; }
+.hackathon-page .project-assembly::before { inset: 30px auto 30px -13px; width: 8px; height: auto; border: 0; background: radial-gradient(ellipse, #b0b9a44d 0 1.5px, transparent 2px) 0 0 / 8px 24px; opacity: .85; }
+.hackathon-page .project-assembly::after { inset: -9px 19px auto auto; width: 60px; height: 19px; border: 1px solid #d8ff3722; background: #d8ff371c; transform: rotate(4deg); }
+.hackathon-page .assembly-heading { border-bottom-style: dashed; background: #d8ff3705; }
+.hackathon-page .assembly-screen { background: #0c160f; }
+.hackathon-page .assembly-sketch { stroke: #d3dfbe; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 6 3 1 3; }
+.hackathon-page .assembly-status { font: 500 1.4rem/1.2 'Caveat Sketch', cursive; }
+.hackathon-page .assembly-controls button[aria-pressed='true'] { background: #d8ff3713; box-shadow: inset 0 -2px #d8ff37bb; }
+.hackathon-page .project-assembly figcaption { font: 500 1.1rem/1.25 'Caveat Sketch', cursive; color: #b8c7a8; }
+
+/* One continuous page of research sketches; diagrams remain large and legible. */
+.hackathon-page .track-grid { border-color: #9aa87e80; border-radius: 4px 2px 6px 3px; box-shadow: 3px 4px 0 #050705, 4px 5px 0 #66795733; }
+.hackathon-page .track-grid article,
+.hackathon-page .track-grid article:nth-child(even) { background: linear-gradient(135deg, #b6d59b05, transparent 65%), #0e1510; box-shadow: none; border-right-color: #a3b69535; }
+.hackathon-page .track-grid article:nth-child(even) { background-color: #111810; }
+.hackathon-page .track-grid article::before { background: none; border: 1px solid #b5c79d2b; border-radius: 47% 53% 42% 58%; transform: rotate(-8deg); }
+.hackathon-page .track-grid article:nth-child(even)::before { border-radius: 54% 41% 53% 45%; transform: rotate(8deg); }
+.hackathon-page .track-grid article::after { height: 5px; background: none; border-bottom: 1px solid var(--acid); border-radius: 50%; inset: auto 15px 5px; transform: scaleX(.19) rotate(-2deg); }
+.hackathon-page .track-id { border: 0; padding: 0 5px; margin-left: -5px; background: none; font: 600 1.18rem/1 'Caveat Sketch', cursive; color: #d0dcb8; letter-spacing: .02em; transform: rotate(-3deg); }
+.hackathon-page .track-grid .track-motif { opacity: .93; transform: rotate(-3deg); }
+.hackathon-page .track-grid .track-motif :is(path, circle, ellipse) { stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.hackathon-page .track-grid article:nth-child(even) .track-motif { transform: rotate(3deg); }
+.hackathon-page .track-grid .sketch-doodle { position: absolute; top: 66px; right: calc(50% - 53px); width: 106px; height: 106px; color: var(--acid); fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.hackathon-page .track-grid article:nth-child(even) .sketch-doodle { color: var(--cyan); }
+.hackathon-page .track-grid article:has(.sketch-doodle) > .track-motif { visibility: hidden; }
+.hackathon-page .tracks.cinema-entered .sketch-doodle path { stroke-dasharray: 1; animation: doodle-ink 1.1s ease-out both; }
+.hackathon-page .tracks.cinema-entered article:nth-child(2) .sketch-doodle path { animation-delay: .1s; }
+.hackathon-page .tracks.cinema-entered article:nth-child(3) .sketch-doodle path { animation-delay: .2s; }
+.hackathon-page .tracks.cinema-entered article:nth-child(4) .sketch-doodle path { animation-delay: .3s; }
+.hackathon-page .tracks.cinema-entered article:nth-child(5) .sketch-doodle path { animation-delay: .4s; }
+@keyframes doodle-ink { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.hackathon-page .ai-line > span { text-decoration: underline; text-decoration-color: #d8ff3770; text-underline-offset: .45em; text-decoration-thickness: 1px; }
+
+/* Mentor field notes: paper tape and checkmarks, without extra written content. */
+.hackathon-page .mentor-panel { border-color: #a1b18b66; border-radius: 2px 7px 3px 8px; background: linear-gradient(90deg, transparent 26px, #4cf4dc18 26px 27px, transparent 27px), #111a12; box-shadow: 4px 5px 0 #050906, 5px 6px 0 #60745740; }
+.hackathon-page .mentor-panel::before { top: -10px; right: 25px; width: 64px; height: 21px; border: 1px solid #d8ff3726; background: #d8ff371c; transform: rotate(-5deg); }
+.hackathon-page .panel-label { max-width: none; padding-right: 15px; font: 600 1.25rem/1.15 'Caveat Sketch', cursive; letter-spacing: .035em; }
+.hackathon-page .mentor-panel li { border-bottom-color: #afbd962b; border-bottom-style: dashed; }
+.hackathon-page .mentor-panel li::before { content: ''; width: 9px; height: 5px; align-self: center; border: solid var(--acid); border-width: 0 0 1.5px 1.5px; transform: rotate(-45deg); }
+.hackathon-page .deliverable-grid { border-top-style: dashed; border-bottom-style: dashed; border-color: #9aad7a66; background: #adc29204; }
+.hackathon-page .deliverable-grid article::before { rotate: -5deg; }
+.hackathon-page .deliverable-grid article:nth-child(2)::before { rotate: 5deg; }
+.hackathon-page .deliverable-grid article:nth-child(3)::after { rotate: -5deg; }
+
+/* Preserve the light acid page and its explicit high-contrast ink. */
+.hackathon-page .section.after { background-color: #d8ff37; }
+.hackathon-page .section.after > p { color: #26351c; }
+.hackathon-page .after .section-kicker { color: #30401b; }
+.hackathon-page .after::before { border-width: 2px; border-color: #25371a24; border-radius: 45% 54% 48% 51%; box-shadow: none; transform: translateY(-50%) rotate(-12deg); }
+.hackathon-page .after::after { background-image: linear-gradient(#26351c0c 1px, transparent 1px), linear-gradient(90deg, #26351c0c 1px, transparent 1px); background-size: 36px 36px; }
+.hackathon-page .apply::before { border-radius: 45% 54% 47% 55%; border-width: 1px; box-shadow: none; }
+.hackathon-page .apply::after { border-radius: 52% 44% 56% 43%; border-style: dashed; opacity: .65; }
+.hackathon-page .apply > .signal { font-family: 'Caveat Sketch', cursive; font-size: 1.25rem; letter-spacing: .04em; }
+.hackathon-page .apply .button { border-radius: 2px 5px 3px 4px; box-shadow: 4px 4px 0 #070809, 5px 5px 0 #d8ff3799; }
+
+@media (hover: hover) and (pointer: fine) {
+  .hackathon-page .track-grid article:hover { box-shadow: inset 0 0 0 1px #d8ff3730; }
+  .hackathon-page .track-grid article:hover::after { transform: scaleX(1) rotate(-1deg); }
+  .hackathon-page .track-grid article:hover .track-motif { transform: translateY(-2px) rotate(0); }
+}
+@media (max-width: 900px) {
+  .hackathon-page .sequence-workbench .timeline > li > span::after { inset-inline: 0; }
+}
+@media (max-width: 800px) {
+  .hackathon-page .section .section-kicker { font-size: 1.05rem; }
+  .hackathon-page .principles { background-color: #10140f; }
+  .hackathon-page .track-grid article:last-child .sketch-doodle { top: calc(50% - 53px); right: calc(22% - 53px); }
+  .hackathon-page .mentor-panel { background-image: none; }
+}
+@media (max-width: 430px) {
+  .hackathon-page .section .section-kicker { font-size: .97rem; letter-spacing: .015em; gap: 10px; }
+  .hackathon-page .section .section-kicker::after { flex-basis: 28px; }
+  .hackathon-page .section h2 > span:not(.motion-word)::after,
+  .hackathon-page .apply h2 > em::after { border-bottom-width: 1.5px; }
+  .hackathon-page .assembly-status { font-size: 1.25rem; }
+  .hackathon-page .project-assembly figcaption { font-size: 1rem; }
+  .hackathon-page .track-grid article .sketch-doodle,
+  .hackathon-page .track-grid article:last-child .sketch-doodle { top: 50px; right: 10px; width: 86px; height: 86px; }
+  .hackathon-page .track-grid article::before,
+  .hackathon-page .track-grid article:last-child::before { width: 83px; height: 93px; top: 45px; right: 11px; }
+  .hackathon-page .panel-label { font-size: 1.18rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hackathon-page .tracks.cinema-entered .sketch-doodle path { animation: none; stroke-dashoffset: 0; }
+  .hackathon-page .section .track-motif,
+  .hackathon-page .section .sketch-doodle,
+  .hackathon-page .sequence-workbench .timeline > li > span::after { transition: none !important; animation: none !important; }
+  .hackathon-page .track-grid article:hover .track-motif { transform: none; }
+}

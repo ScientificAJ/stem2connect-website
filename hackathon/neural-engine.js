@@ -6,6 +6,8 @@ const coarse = matchMedia('(pointer: coarse)');
 const saver = navigator.connection?.saveData === true;
 const canvas = host?.querySelector('.neural-canvas');
 const pause = host?.querySelector('.engine-pause');
+const study = host?.querySelector('.engine-study');
+const studyNote = host?.querySelector('.study-note');
 const modes = [...(host?.querySelectorAll('[data-engine-mode]') || [])];
 let ctx = null;
 try { ctx = canvas?.getContext('2d', { alpha: true }); } catch { /* Static SVG stays visible. */ }
@@ -20,7 +22,7 @@ if (ctx) {
     return `rgb(${Math.round(14 + t * 54)} ${Math.round(30 + t * 66)} ${Math.round(25 + t * 45)})`;
   });
   const wireColors = ['#337168', '#438b79', '#6aaa89', '#a5d6a1', '#d5edb8', '#efffcf'];
-  let visible = false, raf = 0, last = 0, elapsed = 0, paused = false, disposed = false;
+  let visible = false, raf = 0, last = 0, elapsed = 0, paused = false, disposed = false, pencil = false;
   let px = 0, py = 0, targetX = 0, targetY = 0, selected = 0, pulse = 0, pulseAge = 0;
   let tiltX = '', tiltY = '';
   const set = (name, value) => host.style.setProperty(name, value);
@@ -74,7 +76,7 @@ if (ctx) {
     ctx.strokeStyle = '#367c71'; ctx.globalAlpha = .18; ctx.lineWidth = .65; ctx.stroke(back);
     // Painter order retains near/far depth without an expensive 3D renderer.
     for (let depth = 0; depth < 4; depth++) {
-      ctx.globalAlpha = .34 + depth * .055;
+      ctx.globalAlpha = pencil ? .025 : .34 + depth * .055;
       for (let light = 0; light < shadeSteps; light++) {
         ctx.fillStyle = shellColors[light]; ctx.fill(shell[depth * shadeSteps + light]);
       }
@@ -83,9 +85,9 @@ if (ctx) {
     ctx.globalAlpha = .25; ctx.lineWidth = 1.6; ctx.stroke(rim);
     for (let depth = 0; depth < 2; depth++) {
       for (let light = 0; light < 6; light++) {
-        ctx.strokeStyle = wireColors[light];
-        ctx.globalAlpha = .22 + light * .085 + depth * .15;
-        ctx.lineWidth = .45 + light * .055;
+        ctx.strokeStyle = pencil ? '#dde4cb' : wireColors[light];
+        ctx.globalAlpha = pencil ? .17 + light * .085 + depth * .1 : .22 + light * .085 + depth * .15;
+        ctx.lineWidth = pencil ? .65 + light * .04 : .45 + light * .055;
         ctx.stroke(wire[depth * 6 + light]);
       }
     }
@@ -141,6 +143,7 @@ if (ctx) {
   function selectMode(index) {
     selected = index;
     host.dataset.engineMode = String(index);
+    if (studyNote) studyNote.textContent = ['It starts with a question.', 'Make the first version.', 'Put it into the world.'][index];
     modes.forEach(button => button.setAttribute('aria-pressed', String(Number(button.dataset.engineMode) === index)));
     pulse = 1; pulseAge = 0;
     if (!mayRun()) {
@@ -167,6 +170,13 @@ if (ctx) {
     if (Number.isInteger(index) && index >= 0 && index < views.length) selectMode(index);
   }));
   on(pause, 'click', () => { paused = !paused; sync(); });
+  on(study, 'click', () => {
+    pencil = !pencil;
+    study.setAttribute('aria-pressed', String(pencil));
+    host.classList.toggle('pencil-study', pencil);
+    draw();
+  });
+  if (study) study.hidden = false;
   on(document, 'visibilitychange', sync);
   on(reduced, 'change', sync);
   on(coarse, 'change', resize);
@@ -183,6 +193,7 @@ if (ctx) {
   on(window, 'pageshow', sync);
 } else {
   if (pause) pause.hidden = true;
+  if (study) study.hidden = true;
   modes.forEach(button => { button.disabled = true; });
 }
 

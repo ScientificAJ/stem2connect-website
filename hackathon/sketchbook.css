@@ -1,0 +1,133 @@
+/* A student's invention notebook. Handwritten accents, real HTML, small vectors. */
+@font-face { font-family: 'Caveat Sketch'; src: url('../assets/fonts/caveat-latin.woff2') format('woff2'); font-style: normal; font-weight: 400 700; font-display: swap; }
+.hackathon-page { --pencil: #d9e0c9; background-color: #090c0a; }
+.hackathon-page .hero { background: radial-gradient(ellipse at 78% 56%,#233b1929,transparent 52%); min-height: min(850px,calc(100svh - 76px)); padding-block: 85px 90px; }
+.hackathon-page .hero::before { background: repeating-linear-gradient(112deg,transparent 0 3px,#dfedcd03 3px 4px); opacity: .8; }
+.hackathon-page .grid-field { inset: -115px 0; background-image: linear-gradient(#c5d4ba12 1px,transparent 1px),linear-gradient(90deg,#c5d4ba12 1px,transparent 1px),linear-gradient(#c5d4ba08 1px,transparent 1px),linear-gradient(90deg,#c5d4ba08 1px,transparent 1px); background-size: 160px 160px,160px 160px,32px 32px,32px 32px; mask-image: linear-gradient(#000, #000 82%,transparent); opacity: .8; }
+.hackathon-page .hero::after { border: 0; width: 118px; height: 12px; background: repeating-linear-gradient(-48deg,#c4d0aa60 0 1px,transparent 1px 7px); bottom: 36px; opacity: .6; }
+.hackathon-page .site-header { background: #090c0af2; border-bottom-color: #85957032; }
+.hackathon-page .nav-cta { border-radius: 2px 5px 3px 4px; position: relative; }
+.hackathon-page .nav-cta::before { content: ''; position: absolute; inset: 3px -4px -4px 2px; border: 1px solid #aabb7370; border-radius: 4px 2px 7px 3px; rotate: -.8deg; pointer-events: none; }
+.hackathon-page .hero-copy { padding-bottom: 0; }
+.hackathon-page .hero .signal { color: #b2c4a3; letter-spacing: .17em; }
+.hackathon-page .signal span { box-shadow: none; transform: rotate(-8deg); }
+.hackathon-page .hero h1 { font-weight: 600; font-size: clamp(3rem,5.65vw,6.3rem); line-height: 1.03; letter-spacing: -.065em; }
+.hackathon-page .hero h1 em { width: fit-content; position: relative; font: 600 1.73em/.83 'Caveat Sketch',cursive; letter-spacing: -.025em; margin-top: .06em; margin-left: -.025em; padding-right: .06em; transform: rotate(-4deg); }
+.hackathon-page .hero h1 em .motion-word { background: none; color: var(--acid); -webkit-text-fill-color: currentColor; }
+.hackathon-page .hero h1 em::after { content: ''; position: absolute; height: .1em; bottom: -.09em; left: .04em; right: -.05em; border-bottom: 2px solid #d8ff37d9; border-radius: 40% 38% 48% 47%; transform: rotate(1deg); box-shadow: 0 4px 0 -3px #d8ff3799; }
+.hero-pencil-note { position: absolute; top: 39%; left: 49%; display: flex; align-items: center; gap: 6px; transform: rotate(-5deg); color: #bacb9c; pointer-events: none; }
+.hero-pencil-note span { font: 500 clamp(20px,2vw,28px)/.97 'Caveat Sketch',cursive; white-space: nowrap; }
+.hero-pencil-note svg { width: 73px; height: 40px; fill: none; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; }
+.hackathon-page .hero-lede { max-width: 41ch; margin-top: 40px; }
+.hackathon-page .welcome { max-width: 48ch; }
+.hackathon-page .hero-actions { gap: 20px; margin-top: 30px; }
+.hackathon-page .button { position: relative; isolation: isolate; border-radius: 3px 7px 4px 6px / 5px 3px 8px 4px; font: 700 23px/1.15 'Caveat Sketch',cursive; letter-spacing: .005em; text-transform: none; min-height: 54px; padding-inline: 23px; }
+.hackathon-page .hero-actions .button, .hackathon-page .apply .button { font-family: 'Caveat Sketch',cursive; }
+.hackathon-page .button::after { content: ''; position: absolute; inset: 3px -4px -4px 2px; border: 1px solid currentColor; border-radius: 6px 2px 5px 3px / 3px 6px 3px 7px; opacity: .48; rotate: -.7deg; pointer-events: none; }
+.hackathon-page .hero .primary { background: #d8ff37; box-shadow: 3px 4px 0 #090c0a,4px 5px 0 #d8ff3780; border-radius: 4px 9px 3px 4px; rotate: -.8deg; }
+.hackathon-page .primary::after { border-color: #718022; inset: 4px 5px 3px 4px; opacity: .43; }
+.hackathon-page .secondary { background: #0b100b; border-color: #c7d3b6a0; rotate: .6deg; }
+.hackathon-page .button:is(:hover,:focus-visible) { transform: translateY(-3px) rotate(-.6deg); }
+.hackathon-page .secondary:is(:hover,:focus-visible) { background: #1b2417; color: #edffbb; }
+.hackathon-page .primary span { font-size: 26px; font-weight: 400; }
+.hackathon-page .scroll-cue { color: #bbc7aa; }
+.hackathon-page .scroll-cue::before { width: 32px; rotate: -3deg; background: #bdcaa16b; }
+
+/* A second, pencil-rendered study shares the exact same lightweight geometry. */
+.hackathon-page .neural-machine { width: min(600px,46vw); margin-top: 4px; }
+.neural-machine .engine-dial { opacity: .32; }
+.neural-machine .engine-aura { opacity: .65; }
+.study-heading { position: absolute; top: -5px; left: 3%; right: 3%; display: flex; align-items: center; justify-content: space-between; gap: 10px; z-index: 7; }
+.study-heading > span { font: 500 clamp(16px,1.5vw,21px)/1.1 'Caveat Sketch',cursive; color: #b6c4a1; transform: rotate(-2deg); }
+.engine-study { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 10px; border: 1px dashed #a8ba8380; border-radius: 4px 7px 3px 4px; background: #0d140de8; color: #d5e4bf; font: 600 18px/1 'Caveat Sketch',cursive; cursor: pointer; white-space: nowrap; }
+.engine-study[hidden] { display: none; }
+.engine-study svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; fill: none; }
+.engine-study:is(:hover,[aria-pressed='true']) { color: #e9ffc0; border-color: var(--acid); background: #28311c; }
+.neural-machine .sketch-map { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: #c3d2a7; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; z-index: 3; pointer-events: none; }
+.sketch-registration { opacity: .36; }
+.sketch-leaders { stroke-width: 1.2; stroke: #d8ff37; }
+.sketch-leaders path { opacity: .12; stroke-dasharray: 3 5; transition: opacity .4s; }
+.neural-machine[data-engine-mode='0'] [data-leader='0'],
+.neural-machine[data-engine-mode='1'] [data-leader='1'],
+.neural-machine[data-engine-mode='2'] [data-leader='2'] { opacity: .9; stroke-dasharray: 280; animation: leader-pencil .65s ease-out both; }
+.sketch-spark { stroke: var(--acid); opacity: .8; transform-origin: 478px 99px; }
+.sketch-loop { opacity: .14; stroke-width: .8; stroke-dasharray: 1 5; }
+.study-caption { position: absolute; bottom: -3%; left: 27%; right: 13%; display: flex; justify-content: center; align-items: center; color: #d0dfa5; pointer-events: none; transform: rotate(-3deg); }
+.study-note { font: 500 clamp(22px,2.05vw,29px)/1.1 'Caveat Sketch',cursive; }
+.study-caption svg { width: 75px; height: 48px; fill: none; stroke: currentColor; stroke-width: 1; flex-shrink: 0; }
+.hackathon-page .neural-machine .node { font: 600 21px/1 'Caveat Sketch',cursive; letter-spacing: .025em; min-height: 44px; padding: 8px 14px; border-radius: 3px 7px 4px 5px; box-shadow: none; transform: rotate(-4deg); }
+.hackathon-page .neural-machine .node-b { transform: rotate(4deg); }
+.hackathon-page .neural-machine .node-c { transform: rotate(-2deg); }
+.hackathon-page .neural-machine .node::before { width: 5px; height: 5px; border-radius: 50%; }
+.hackathon-page .neural-machine .node:is(:hover,[aria-pressed='true']) { box-shadow: 2px 2px 0 #d8ff373d; background: #1d2918; }
+.pencil-study .engine-aura { opacity: .15; }
+.pencil-study .engine-chip .chip-stack > path { fill: #10160ee8; stroke: #d2dab9; stroke-width: 1.25; }
+.pencil-study .engine-chip { filter: none; }
+.pencil-study .core span { color: #e5edcb !important; text-shadow: none !important; }
+.pencil-study .sketch-loop { opacity: .48; stroke-dasharray: 650; animation: leader-pencil .9s ease-out both; }
+.pencil-study .sketch-spark { stroke: #f0f6df; }
+.pencil-study .engine-dial { opacity: .15; }
+.hackathon-page .engine-pause { width: 44px; height: 44px; border-radius: 47% 53% 44% 56%; border-color: #abbc8280; background: #0a110be6; }
+.notebook-thread { position: relative; height: 95px; margin: 35px 0 -35px; color: #c5d4a6; }
+.notebook-thread svg { width: 100%; height: 90px; fill: none; stroke: currentColor; stroke-width: 1.15; stroke-linecap: round; opacity: .42; }
+.notebook-thread span { position: absolute; bottom: 0; left: 44%; background: #090c0a; padding: 0 12px; font: 500 24px/1.1 'Caveat Sketch',cursive; transform: rotate(-3deg); }
+.cinema-entered .thread-stroke { stroke-dasharray: 1300; animation: thread-pencil 1.8s ease-out both; }
+.hackathon-page .apply h2 em { font-family: 'Caveat Sketch',cursive; font-weight: 600; letter-spacing: -.025em; font-size: 1.24em; }
+.hackathon-page .apply h2 em .motion-word { background: none; color: var(--acid); -webkit-text-fill-color: currentColor; }
+@keyframes leader-pencil { from { stroke-dashoffset: 280; } to { stroke-dashoffset: 0; } }
+@keyframes thread-pencil { from { stroke-dashoffset: 1300; } to { stroke-dashoffset: 0; } }
+@media (min-width: 1600px) { .hackathon-page .hero h1 { font-size: 5.75rem; } }
+@media (max-width: 1100px) and (min-width: 801px) {
+ .hackathon-page .hero { min-height: 720px; padding-block: 80px 85px; }
+ .hackathon-page .hero h1 { font-size: 5.35vw; }
+ .hero-pencil-note { left: 53%; top: 33%; }
+ .hero-pencil-note svg { width: 36px; }
+ .hero-pencil-note span { font-size: 20px; }
+ .study-heading { flex-wrap: wrap; top: -15px; }
+ .study-heading > span { flex: 1 1 100%; }
+ .study-heading .engine-study { margin-left: auto; margin-top: -22px; }
+ .study-heading > span { max-width: 52%; }
+ .hackathon-page .hero-actions .button { font-size: 19px; padding-inline: 17px; }
+ .hackathon-page .neural-machine .node { font-size: 18px; }
+}
+@media (max-width: 800px) {
+ .hackathon-page .hero { padding: 62px 28px 80px; min-height: 0; gap: 35px; }
+ .hackathon-page .hero h1 { font-size: clamp(2.4rem,10.8vw,5rem); }
+ .hackathon-page .hero h1 em { font-size: 1.7em; }
+ .hero-pencil-note { left: 51%; top: 25%; }
+ .hero-pencil-note span { font-size: 23px; }
+ .hero-pencil-note svg { width: 45px; }
+ .hackathon-page .hero-lede { margin-top: 34px; }
+ .hackathon-page .hero-actions { gap: 15px; }
+ .hackathon-page .hero-actions .button { font-size: 21px; padding-inline: 18px; min-height: 52px; }
+ .hackathon-page .neural-machine { width: min(540px,calc(100vw - 36px)); margin: 8px -10px 10px; }
+ .study-heading { top: 0; }
+ .study-heading > span { font-size: 19px; max-width: 45%; }
+ .engine-study { font-size: 18px; }
+ .hackathon-page .neural-machine .node { font-size: 19px; }
+ .study-note { font-size: 24px; }
+ .study-caption { left: 20%; right: 9%; bottom: -4%; }
+ .study-caption svg { width: 50px; }
+ .notebook-thread { margin-top: 15px; height: 70px; margin-bottom: -22px; }
+ .notebook-thread span { left: 27%; font-size: 21px; }
+}
+@media (max-width: 430px) {
+ .hackathon-page .hero { padding-inline: 24px; gap: 40px; }
+ .hero-pencil-note { top: 21%; left: 51%; }
+ .hero-pencil-note svg { width: 22px; }
+ .hero-pencil-note span { font-size: 21px; }
+ .hackathon-page .hero-actions .button { width: 100%; flex: 1 1 100%; font-size: 22px; padding-inline: 18px; white-space: nowrap; }
+ .hackathon-page .neural-machine { width: calc(100vw - 28px); margin-inline: -10px; }
+ .study-heading > span { font-size: 17px; max-width: 44%; }
+ .engine-study { padding-inline: 8px; font-size: 17px; }
+ .study-caption { left: 20%; right: 0; }
+ .study-note { font-size: 21px; }
+ .hackathon-page .neural-machine .node { padding-inline: 9px; font-size: 18px; }
+ .notebook-thread span { left: 20%; font-size: 20px; }
+ .hackathon-page .apply .button { font-size: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .sketch-leaders path, .pencil-study .sketch-loop, .cinema-entered .thread-stroke { animation: none !important; stroke-dashoffset: 0; }
+ .hackathon-page .button, .sketch-leaders path { transition: none; }
+ .hackathon-page .button:is(:hover,:focus-visible) { transform: none; }
+}

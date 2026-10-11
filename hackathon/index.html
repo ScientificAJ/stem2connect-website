@@ -13,8 +13,10 @@
   <link rel="stylesheet" href="../hackathon-motion.css?v=2" />
   <link rel="stylesheet" href="cinematic.css?v=2" />
   <link rel="stylesheet" href="cinematic-sections.css?v=2" />
+  <link rel="stylesheet" href="sketchbook.css?v=1" />
+  <link rel="stylesheet" href="sketch-sections.css?v=1" />
   <script type="module" src="../hackathon-motion.js?v=4"></script>
-  <script type="module" src="neural-engine.js?v=2"></script>
+  <script type="module" src="neural-engine.js?v=3"></script>
 </head>
 <body class="hackathon-page">
   <header class="site-header">
@@ -36,6 +38,7 @@
       <div class="hero-copy">
         <p class="signal"><span></span> STEM2CONNECT PRESENTS</p>
         <h1>AI HACKATHON<br /><em>2026</em></h1>
+        <div class="hero-pencil-note" aria-hidden="true"><svg viewBox="0 0 105 50" focusable="false"><path d="M101 6C88 33 49 42 6 28m0 0 14-7M6 28l11 11"/></svg><span>big things start<br />with a small idea.</span></div>
         <p class="hero-lede">A global project-building experience for students who want to learn with AI, build something real, and create lasting impact.</p>
         <p class="welcome">No coding experience? No problem. If you can describe a problem and are willing to learn, you can participate.</p>
         <div class="hero-actions">
@@ -44,6 +47,13 @@
         </div>
       </div>
       <div class="machine neural-machine" aria-label="AI project signal visual">
+        <div class="study-heading"><span aria-hidden="true">Fig. 01 — an idea taking shape</span><button class="engine-study" type="button" aria-pressed="false" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 13 9-9 3 3-9 9-4 1Z M11 6l3 3M3 18h14"/></svg>Pencil study</button></div>
+        <svg class="sketch-map" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+          <g class="sketch-registration"><path d="M18 80V44h40M545 44h37v37M18 518v38h40M544 556h38v-38M293 46h14m-7-7v14M293 552h14m-7-7v14"/><path d="M46 562 37 573m25-11-9 11m25-11-9 11m25-11-9 11m25-11-9 11m25-11-9 11"/></g>
+          <g class="sketch-leaders"><path data-leader="0" d="M84 156Q126 174 166 210T235 258"/><path data-leader="1" d="M516 316Q456 347 396 318L366 294"/><path data-leader="2" d="M147 452Q186 405 237 378T291 344"/></g>
+          <g class="sketch-spark" transform="translate(478 99)"><path d="M0-18Q1-1 17 0Q0 2 0 19Q-2 1-17 0Q-1-2 0-18Z M27-20v10m-5-5h10"/></g>
+          <path class="sketch-loop" d="M166 112C303 63 485 134 515 273C551 442 361 514 242 477C111 437 66 286 119 195"/>
+        </svg>
         <div class="engine-aura" aria-hidden="true"></div>
         <svg class="engine-dial" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
           <defs>
@@ -99,6 +109,7 @@
         <button class="node node-b" type="button" data-engine-mode="1" aria-pressed="false">BUILD</button>
         <button class="node node-c" type="button" data-engine-mode="2" aria-pressed="false">IMPACT</button>
         <button class="engine-pause" type="button" aria-label="Pause AI visual animation" aria-pressed="false" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path class="pause-glyph" d="M5 3v10M11 3v10"/><path class="play-glyph" d="m5 3 8 5-8 5Z"/></svg></button>
+        <div class="study-caption" aria-hidden="true"><span class="study-note">It starts with a question.</span><svg viewBox="0 0 100 52" focusable="false"><path d="M4 43C51 52 78 28 83 5m0 0-13 10M83 5l8 13"/></svg></div>
       </div>
       <p class="scroll-cue">SCROLL TO INITIALIZE <span aria-hidden="true">&#8595;</span></p>
     </section>
@@ -112,6 +123,7 @@
           <a class="text-link" href="#deliverables">See what you will build <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
+      <div class="notebook-thread" aria-hidden="true"><svg viewBox="0 0 1120 90" preserveAspectRatio="xMidYMid meet" focusable="false"><g class="thread-stroke"><path d="M9 59C164 34 264 76 367 48S486 25 561 52S738 73 772 39S917 35 1081 48"/><path d="m1064 38 22 10-23 9"/><path d="m41 22 12 5-10 7m-2-12 2 12M1008 13v17m-8-9h17"/><circle cx="378" cy="45" r="10"/><path d="m527 63 10-31 27 24Z"/></g></svg><span>Learn. Try. Scribble. Repeat.</span></div>
       <div class="principles">
         <article><b>01</b><h3>Learn by building</h3><p>Use modern AI tools and APIs to make a project, not just a prototype deck.</p></article>
         <article><b>02</b><h3>Build together</h3><p>Form a team of 2-3 or join individually and connect with collaborators.</p></article>
@@ -156,11 +168,11 @@
       <div class="section-kicker">[ 03 / CHOOSE A SIGNAL ]</div>
       <div class="tracks-heading"><h2>Pick a track.<br /><span>Find a real problem.</span></h2><p>Each track is a starting point, not a limit. Choose the problem you care about and make it yours.</p></div>
       <div class="track-grid">
-        <article><span class="track-id">T-01</span><h3>Education</h3><p>Learning, accessibility, tutoring, and academic organization.</p></article>
-        <article><span class="track-id">T-02</span><h3>Healthcare</h3><p>Health education, patient resources, public health, and access.</p></article>
-        <article><span class="track-id">T-03</span><h3>Sustainability</h3><p>Climate, resource efficiency, environmental challenges, and living well.</p></article>
-        <article><span class="track-id">T-04</span><h3>Scientific Research</h3><p>Tools for analysis, organization, collaboration, and communication.</p></article>
-        <article><span class="track-id">T-05</span><h3>Community Impact</h3><p>Accessibility, inclusion, volunteering, and information sharing.</p></article>
+        <article><span class="track-id">T-01</span><h3>Education</h3><p>Learning, accessibility, tutoring, and academic organization.</p><svg class="sketch-doodle" viewBox="0 0 106 106" aria-hidden="true" focusable="false"><path pathLength="1" d="M52 43C41 35 26 35 14 37L16 78C30 75 42 78 53 85M53 43C65 35 81 34 92 37L90 78C77 75 64 78 53 85ZM53 43 52 85M20 42C31 40 42 42 47 46M21 52C30 49 40 52 46 55M22 62C29 61 38 63 45 66M61 46C69 41 80 41 86 42M61 56C69 52 78 51 85 52M61 66C70 61 77 62 84 62"/><path pathLength="1" d="M45 24C43 19 47 12 53 12C61 11 66 19 62 25L58 30 58 34 50 34 49 29ZM50 38 57 38M40 12 37 8M68 11 72 7M37 22 31 22M69 22 75 21"/><path pathLength="1" d="M17 81C29 78 42 81 51 88M56 86C67 80 78 80 89 81" opacity=".3"/><path pathLength="1" d="M8 33v11M86 90h13" opacity=".25"/></svg></article>
+        <article><span class="track-id">T-02</span><h3>Healthcare</h3><p>Health education, patient resources, public health, and access.</p><svg class="sketch-doodle" viewBox="0 0 106 106" aria-hidden="true" focusable="false"><path pathLength="1" d="M53 83C40 74 17 59 15 40C12 23 23 15 34 19C42 20 49 27 52 32C57 24 66 17 77 19C93 22 96 35 90 48C84 63 66 78 53 83Z"/><path pathLength="1" d="M18 49 32 49 39 38 46 65 56 35 62 52 70 45 88 46"/><path pathLength="1" d="M19 32C20 24 29 20 35 23M55 87C69 78 85 64 91 53" opacity=".32"/><path pathLength="1" d="M10 68v13h12M83 11h13" opacity=".25"/></svg></article>
+        <article><span class="track-id">T-03</span><h3>Sustainability</h3><p>Climate, resource efficiency, environmental challenges, and living well.</p><svg class="sketch-doodle" viewBox="0 0 106 106" aria-hidden="true" focusable="false"><path pathLength="1" d="M23 66C23 43 45 33 64 39C87 46 93 68 78 83C64 97 40 92 28 78M30 85C23 87 15 86 13 81C9 73 29 59 48 52M52 49C72 40 95 43 96 51C98 61 76 74 56 81"/><path pathLength="1" d="M54 76C51 59 51 44 54 34M54 52C40 54 31 44 32 31C44 33 51 40 54 52M54 37C52 24 64 15 77 15C76 28 67 37 54 37M55 34 69 23M50 47 38 37"/><path pathLength="1" d="M57 39C68 39 76 44 81 52M26 70C25 75 27 79 30 82" opacity=".28"/><path pathLength="1" d="M13 21h10M85 81v13" opacity=".25"/></svg></article>
+        <article><span class="track-id">T-04</span><h3>Scientific Research</h3><p>Tools for analysis, organization, collaboration, and communication.</p><svg class="sketch-doodle" viewBox="0 0 106 106" aria-hidden="true" focusable="false"><path pathLength="1" d="M41 15 34 24 60 49 69 39ZM34 21 30 17 38 8 43 13M59 46 55 53 61 59 68 50M64 50C74 51 78 60 75 67C72 77 62 80 48 78M72 47C88 55 86 75 72 83M32 87 33 82 73 81 79 87 79 92 29 92 32 87M30 64 64 63M35 67 54 67M39 68 40 79"/><path pathLength="1" d="M29 42C14 43 11 50 15 55M17 59C19 62 24 64 28 65M77 19C86 23 92 30 88 34L78 37"/><path pathLength="1" d="M37 26 59 47M31 95 80 94" opacity=".3"/><path pathLength="1" d="M15 17v12M91 77h10" opacity=".25"/></svg></article>
+        <article><span class="track-id">T-05</span><h3>Community Impact</h3><p>Accessibility, inclusion, volunteering, and information sharing.</p><svg class="sketch-doodle" viewBox="0 0 106 106" aria-hidden="true" focusable="false"><path pathLength="1" d="M44 25C44 18 50 14 56 17C62 19 64 26 59 31C54 36 44 32 44 25ZM37 46C39 35 48 34 55 35C63 35 70 40 69 48M18 54C17 47 23 43 29 45C36 47 36 55 32 59C27 64 18 62 18 54ZM10 78C12 66 22 63 30 65C37 66 42 72 42 80M73 54C72 47 78 44 84 46C90 48 91 55 86 60C80 65 73 61 73 54ZM64 81C66 68 74 65 82 65C90 65 96 71 96 79"/><path pathLength="1" d="M24 38C27 29 31 26 38 25M69 25C75 26 80 32 82 39M29 85C42 95 62 96 77 86M39 77 52 62 67 77M49 62 55 62"/><path pathLength="1" d="M13 80 40 82M67 83 94 81" opacity=".3"/><path pathLength="1" d="M10 31h10M92 18v11" opacity=".25"/></svg></article>
       </div>
       <p class="ai-line"><span>AI COMPONENT REQUIRED</span> Every project connects to at least one AI-related tool, API, dataset, or external service.</p>
     </section>
