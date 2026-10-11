@@ -2,7 +2,7 @@
 .hackathon-page { --line: #26312e; --muted: #a9b6ae; background: #070809; }
 .hackathon-page .site-header { z-index: 20; padding-inline: max(5vw,24px); background: #070a09e8; border-bottom-color: #22332a; }
 .hackathon-page .brand { letter-spacing: -.04em; }
-.hackathon-page nav { font-size: 10px; gap: clamp(20px,2.8vw,42px); }
+.hackathon-page nav { font-size: 11px; gap: clamp(20px,2.8vw,42px); }
 .hackathon-page nav a:not(.nav-cta) { position: relative; padding-block: 10px; }
 .hackathon-page nav a:not(.nav-cta)::after { content: ''; position: absolute; bottom: 2px; left: 0; right: 0; height: 1px; background: var(--acid); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
 .hackathon-page nav a:is(:hover,[aria-current])::after { transform: scaleX(1); }
@@ -20,9 +20,9 @@
 .hackathon-page .hero h1 br { display: none; }
 .hackathon-page .hero h1 em .motion-word { background: linear-gradient(115deg,#edffb5 5%,#d8ff37 43%,#6ef0b2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hackathon-page .hero-lede { max-width: 39ch; font-size: clamp(1rem,1.35vw,1.2rem); line-height: 1.7; margin-top: 32px; color: #d6e1d7; }
-.hackathon-page .welcome { max-width: 47ch; color: #88998e; font-size: 13px; line-height: 1.7; }
+.hackathon-page .welcome { max-width: 47ch; color: #a3b2a6; font-size: 13px; line-height: 1.7; }
 .hackathon-page .hero-actions { gap: 12px; margin-top: 30px; }
-.hackathon-page .button { min-height: 51px; padding-inline: 21px; font-size: 10px; letter-spacing: .045em; border-color: #435048; }
+.hackathon-page .button { min-height: 51px; padding-inline: 21px; font-size: 11px; letter-spacing: .045em; border-color: #435048; }
 .hackathon-page .primary { border-color: var(--acid); box-shadow: 0 0 30px #d8ff3710,inset 0 1px #f4ffd9; }
 .hackathon-page .primary span { margin-left: 9px; font-size: 18px; transition: transform .3s; }
 .hackathon-page .primary:hover span { transform: translateX(4px); }
@@ -49,7 +49,7 @@
 .hackathon-page .neural-machine .node-b { top: 48%; right: -1%; }
 .hackathon-page .neural-machine .node-c { bottom: 17%; left: 12%; }
 .neural-machine .dial-revolve { transform-origin: 300px 294px; animation: dial-revolve 80s linear infinite; animation-play-state: paused; }
-.engine-pause { position: absolute; right: 11%; bottom: 9%; z-index: 5; width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid #304d3d; color: #94b3a1; background: #0a100c; border-radius: 50%; cursor: pointer; }
+.engine-pause { position: absolute; right: 11%; bottom: 9%; z-index: 5; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid #64806e; color: #b3cbbb; background: #0a100c; border-radius: 50%; cursor: pointer; }
 .engine-pause[hidden] { display: none; }
 .engine-pause svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.4; }
 .engine-pause:hover { border-color: var(--acid); color: var(--acid); }
@@ -84,3 +84,31 @@
 @media (max-width: 360px) { .hackathon-page .site-header { padding-inline: 14px; } .hackathon-page .hero { padding-inline: 22px; } .hackathon-page .hero h1 { font-size: 8.7vw; } }
 @media (prefers-reduced-motion: reduce) { .neural-machine .dial-revolve { animation: none; } .hackathon-page .engine-chip { transform: none; } }
 @media print { .neural-machine .neural-canvas { display: none; } .neural-machine.engine-ready .neural-poster { visibility: visible; } .engine-pause { display: none; } }
+
+/* The instrument keeps the same silhouette; light and controls supply its depth. */
+.hackathon-page .neural-machine .node {
+  min-height: 44px; font-family: 'IBM Plex Mono',monospace; font-weight: 500;
+  cursor: pointer; appearance: none; border-radius: 3px;
+  transition: color .25s, border-color .25s, background .25s, box-shadow .25s;
+  box-shadow: 0 8px 24px #0006, inset 0 1px #ddffe90a;
+}
+.hackathon-page .neural-machine .node:is(:hover,[aria-pressed="true"]) {
+  color: #eaffb7; border-color: #9ab961; background: #1b2b19;
+  box-shadow: 0 8px 24px #0006, 0 0 22px #d8ff3710, inset 0 1px #eaffb71c;
+}
+.hackathon-page .neural-machine .node[aria-pressed="true"]::before {
+  background: var(--acid); border-color: var(--acid); box-shadow: 0 0 8px #d8ff3760;
+}
+.hackathon-page .neural-machine .node:disabled { cursor: default; }
+.hackathon-page :is(a,button):focus-visible { outline: 2px solid #eaffb7; outline-offset: 5px; }
+.neural-machine .engine-aura { inset: 5%; background: radial-gradient(ellipse at 43% 40%,#a2d43719,transparent 60%),radial-gradient(ellipse at 70% 64%,#4cf4dc0b,transparent 55%); }
+.neural-machine .engine-chip { filter: drop-shadow(0 12px 8px #0005); }
+.hackathon-page .hero::before { background: linear-gradient(117deg,transparent 40%,#608d5624 58%,transparent 76%); opacity: .55; }
+.hackathon-page .hero .primary { background: linear-gradient(118deg,#e4ff72,#d8ff37 65%); }
+.hackathon-page .nav-cta:hover { background: #d8ff3712; border-color: var(--acid); }
+@media (max-width: 800px) {
+ .hackathon-page .hero-actions .button { font-size: 10px; }
+ .hackathon-page .neural-machine .node { font-size: 9px; padding-inline: 10px; }
+ .hackathon-page .nav-cta { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .hackathon-page .neural-machine .node { transition: none; } }

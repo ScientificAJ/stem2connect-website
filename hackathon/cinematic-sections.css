@@ -47,7 +47,7 @@
   text-wrap: balance;
 }
 
-.hackathon-page .section :is(.intro-grid > div, .tracks-heading > p, .mentor-copy > p, .after > p) {
+.hackathon-page .section :is(.intro-grid > div, .tracks-heading > p, .mentor-copy > p) {
   font-size: clamp(.96rem, 1.18vw, 1.08rem);
   line-height: 1.8;
   color: #b4bfb7;
@@ -61,6 +61,10 @@
 .hackathon-page .intro-grid > div {
   padding-top: 5px;
   max-width: 57ch;
+}
+
+.hackathon-page .intro {
+  background: radial-gradient(ellipse at 20% 95%, #24382928, transparent 58%);
 }
 
 .hackathon-page .section .text-link {
@@ -86,6 +90,17 @@
   border-color: var(--chapter-rule);
 }
 
+.hackathon-page .principles {
+  overflow: clip;
+  border: 1px solid #3b4a3d;
+  border-bottom-color: #29372f;
+  background:
+    linear-gradient(#2a3731, #2a3731) 33.333% 0 / 1px 100% no-repeat,
+    linear-gradient(#2a3731, #2a3731) 66.667% 0 / 1px 100% no-repeat,
+    linear-gradient(112deg, #17231b99, #0b120e77 42%, #1c281688);
+  box-shadow: inset 0 1px #d2e3c10d, 0 20px 44px -25px #0008;
+}
+
 .hackathon-page :is(.principles, .deliverable-grid) article {
   position: relative;
   min-width: 0;
@@ -95,6 +110,28 @@
 }
 
 .hackathon-page :is(.principles, .deliverable-grid) article + article { padding-left: 32px; }
+
+.hackathon-page .principles article,
+.hackathon-page .principles article + article {
+  padding-left: 27px;
+  border-right: 0;
+  transition: background-color .28s ease;
+}
+
+.hackathon-page .principles article::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 27px;
+  width: 32px;
+  height: 1px;
+  background: var(--cyan);
+  opacity: .75;
+  pointer-events: none;
+}
+
+.hackathon-page .principles article:nth-child(2)::after { background: var(--acid); }
+.hackathon-page .principles article:nth-child(3)::after { width: 64px; }
 
 .hackathon-page :is(.principles, .deliverable-grid) article::before {
   content: "";
@@ -146,7 +183,9 @@
 
 /* An engineering workbench, with visible stages and a restrained instrument bezel. */
 .hackathon-page .sequence {
-  background: linear-gradient(110deg, #0b100e, #101512 70%, #0a100d);
+  background:
+    radial-gradient(ellipse at 80% 40%, #29463830, transparent 52%),
+    linear-gradient(110deg, #0b100e, #101512 70%, #0a100d);
 }
 
 .hackathon-page .sequence h2 { margin-bottom: 52px; }
@@ -154,11 +193,30 @@
 .hackathon-page .sequence-workbench .timeline { border-color: var(--chapter-rule); }
 
 .hackathon-page .sequence-workbench .timeline li {
+  position: relative;
   min-height: 156px;
   grid-template-columns: 58px minmax(0, 1fr);
   gap: 22px;
   border-color: var(--chapter-rule);
+  transition: background-color .3s ease;
 }
+
+.hackathon-page .sequence-workbench .timeline li::after {
+  content: "";
+  position: absolute;
+  left: 80px;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, #d8ff37b3, #4cf4dc55, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s ease;
+  pointer-events: none;
+}
+
+.hackathon-page .sequence-workbench .timeline li.assembly-current { background: linear-gradient(90deg, transparent, #b8e36605); }
+.hackathon-page .sequence-workbench .timeline li.assembly-current::after { transform: scaleX(1); }
 
 .hackathon-page .sequence-workbench .timeline > li > span {
   width: 58px;
@@ -188,9 +246,9 @@
 
 .hackathon-page .project-assembly {
   top: 110px;
-  border: 1px solid #53664d;
-  background: #0c1712;
-  box-shadow: 0 0 0 6px #070c09, 0 0 0 7px #25372a, 0 24px 70px #0004;
+  border: 1px solid #607757;
+  background: linear-gradient(140deg, #1b2d21 0, #0d1b14 30%, #09140f 70%, #1d2b18 100%);
+  box-shadow: 0 0 0 5px #090f0b, 0 0 0 6px #364832, 0 18px 48px -14px #000a, inset 0 1px #d3ebac1c;
 }
 
 .hackathon-page .project-assembly::before,
@@ -206,30 +264,40 @@
 
 .hackathon-page .project-assembly::before { top: -8px; left: -8px; border-width: 1px 0 0 1px; }
 .hackathon-page .project-assembly::after { bottom: -8px; right: -8px; border-width: 0 1px 1px 0; }
-.hackathon-page .assembly-heading { padding: 20px; letter-spacing: .13em; font-size: .61rem; border-color: #314236; }
+.hackathon-page .assembly-heading { padding: 20px; letter-spacing: .13em; font-size: .61rem; border-color: #465c42; background: linear-gradient(105deg, #2c402332, transparent 75%); }
 .hackathon-page .assembly-step { color: #b5cba9; }
-.hackathon-page .assembly-screen { padding: 10px 0; background: radial-gradient(ellipse at center, #16312555, transparent 72%); }
-.hackathon-page .assembly-sketch { stroke: #a7b7a5; }
+.hackathon-page .assembly-screen { padding: 12px 0; background: radial-gradient(ellipse at 53% 40%, #294c3e99, #10271c33 48%, #06100b88 90%); }
+.hackathon-page .assembly-sketch { stroke: #c2d2b5; stroke-width: 1.25; }
+.hackathon-page .assembly-components > rect { stroke: #a8d7b034; stroke-width: 1; }
+.hackathon-page .assembly-connections { stroke-width: 1.6; }
+.hackathon-page .assembly-connections circle { fill: #13281f; stroke-width: 2.4; }
 .hackathon-page .assembly-status { padding: 5px 20px 22px; font-size: .9rem; }
 .hackathon-page .assembly-controls { border-color: #314236; }
-.hackathon-page .assembly-controls button { min-height: 77px; padding: 15px 12px; border-color: #314236; transition: background .2s, color .2s; }
+.hackathon-page .assembly-controls button { min-height: 77px; padding: 15px 12px; border-color: #314236; background: #03090433; transition: background .2s, color .2s; }
 .hackathon-page .assembly-controls button span { font-size: .72rem; }
-.hackathon-page .assembly-controls button[aria-pressed="true"] { background: #26341b; color: var(--acid); }
+.hackathon-page .assembly-controls button[aria-pressed="true"] { background: linear-gradient(150deg, #3a4d27, #202c19); color: var(--acid); box-shadow: inset 0 1px #d8ff3726, inset 0 -2px var(--acid); }
 .hackathon-page .project-assembly figcaption { margin: 0; padding: 16px 20px; color: #95a997; font-size: .64rem; }
 
 /* Five fields of investigation: one continuous catalogue, not floating cards. */
 .hackathon-page .tracks-heading { align-items: end; gap: 70px; margin-bottom: 54px; }
 .hackathon-page .tracks-heading > p { max-width: 41ch; margin-bottom: 4px; }
-.hackathon-page .track-grid { border-color: #3a4b3d; }
+.hackathon-page .track-grid { overflow: clip; border-color: #506346; box-shadow: 0 22px 56px -25px #0009; }
 
 .hackathon-page .track-grid article {
   position: relative;
   isolation: isolate;
   min-height: 346px;
   padding: 24px clamp(17px, 1.8vw, 27px) 28px;
-  border-color: #3a4b3d;
-  background: linear-gradient(180deg, #101811 0, #10151155 38%, #080b0900 100%);
-  transition: background-color .3s ease, border-color .3s ease;
+  border-color: #3b4d3e;
+  background:
+    radial-gradient(ellipse at 60% 27%, #d8ff370a, transparent 55%),
+    linear-gradient(135deg, #1c2a1b 0, #101c14 28%, #0b110d 65%, #172217 100%);
+  box-shadow: inset 0 1px #d5e6b615, inset 1px 0 #d5e6b606;
+  transition: background-color .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.hackathon-page .track-grid article:nth-child(even) {
+  background: radial-gradient(ellipse at 50% 28%, #4cf4dc0b, transparent 56%), linear-gradient(135deg, #14271f, #0b1510 48%, #101c14);
 }
 
 .hackathon-page .track-grid article::before {
@@ -240,9 +308,10 @@
   width: calc(100% - 48px);
   height: 98px;
   background:
-    linear-gradient(#4cf4dc22, #4cf4dc22) center / 100% 1px no-repeat,
-    linear-gradient(#4cf4dc22, #4cf4dc22) center / 1px 100% no-repeat,
-    radial-gradient(ellipse at center, transparent 50%, #4cf4dc12 51%, transparent 52%);
+    linear-gradient(#4cf4dc29, #4cf4dc29) center / 100% 1px no-repeat,
+    linear-gradient(#4cf4dc29, #4cf4dc29) center / 1px 100% no-repeat,
+    radial-gradient(ellipse at center, #0a140e00 54%, #bed5b42b 55%, transparent 56%),
+    radial-gradient(ellipse at center, #d2ff9d05 0, #070d0888 55%, transparent 58%);
   pointer-events: none;
 }
 
@@ -258,11 +327,13 @@
   pointer-events: none;
 }
 
-.hackathon-page .track-id { position: relative; font-size: .63rem; letter-spacing: .12em; color: #91bfa3; }
+.hackathon-page .track-id { position: relative; display: inline-block; padding: 3px 7px; margin-left: -7px; border: 1px solid #77856a40; font-size: .63rem; letter-spacing: .12em; color: #c4d6bc; background: #17221a; }
 .hackathon-page .track-grid h3 { position: relative; margin: 136px 0 15px; font-size: clamp(1.12rem, 1.6vw, 1.45rem); line-height: 1.17; font-weight: 500; letter-spacing: -.045em; }
-.hackathon-page .track-grid p { position: relative; font-size: .81rem; line-height: 1.75; color: #a4b6a8; }
-.hackathon-page .track-grid .track-motif { top: 69px; right: calc(50% - 48px); width: 96px; height: 96px; opacity: .64; color: var(--cyan); }
-.hackathon-page .track-grid .track-motif :is(path, circle, ellipse) { stroke-width: .85; stroke-dasharray: none; stroke-dashoffset: 0; }
+.hackathon-page .track-grid p { position: relative; font-size: .83rem; line-height: 1.75; color: #b4c2b6; }
+.hackathon-page .track-grid .track-motif { top: 69px; right: calc(50% - 48px); width: 96px; height: 96px; opacity: .95; color: var(--cyan); }
+.hackathon-page .track-grid .track-motif :is(path, circle, ellipse) { stroke-width: 1.15; stroke-dasharray: none; stroke-dashoffset: 0; }
+.hackathon-page .track-grid .track-motif circle { fill: #0c1811; }
+.hackathon-page .track-grid article:nth-child(2) .track-motif circle { fill: none; stroke-width: .6; opacity: .55; }
 .hackathon-page .track-grid article:nth-child(odd) .track-motif { color: var(--acid); }
 
 .hackathon-page .ai-line {
@@ -288,9 +359,11 @@
   position: relative;
   min-width: 0;
   padding: clamp(26px, 3.5vw, 46px);
-  border: 1px solid #405c4d;
-  background: linear-gradient(115deg, #112119, #0b130e);
-  box-shadow: inset 3px 0 0 #4cf4dc;
+  border: 1px solid #486451;
+  background:
+    radial-gradient(ellipse at 90% 8%, #4cf4dc0e, transparent 47%),
+    linear-gradient(130deg, #1e3225 0, #0e1a13 50%, #132016);
+  box-shadow: inset 3px 0 0 #4cf4dc, inset 0 1px #cae9ac1a, 0 18px 50px -22px #0009;
 }
 
 .hackathon-page .mentor-panel::before {
@@ -304,17 +377,21 @@
   pointer-events: none;
 }
 
-.hackathon-page .panel-label { margin: 0; max-width: 26ch; color: var(--cyan); font-size: .65rem; line-height: 1.6; letter-spacing: .12em; }
+.hackathon-page .panel-label { margin: 0; max-width: 31ch; color: var(--cyan); font-size: .65rem; line-height: 1.6; letter-spacing: .12em; }
 .hackathon-page .mentor-panel ul { margin: 26px 0 22px; }
-.hackathon-page .mentor-panel li { display: flex; align-items: baseline; gap: 14px; padding: 17px 0; border-color: #314537; font-size: .91rem; line-height: 1.5; }
+.hackathon-page .mentor-panel li { display: flex; align-items: baseline; gap: 14px; padding: 17px 0; border-color: #49603b66; font-size: .91rem; line-height: 1.5; transition: color .2s ease; }
 .hackathon-page .mentor-panel li::before { flex-shrink: 0; margin-right: 0; font: 400 .8rem "IBM Plex Mono", monospace; color: #d8ff3799; }
 .hackathon-page .mentor-panel .text-link { width: 100%; margin-top: 0; }
 
 .hackathon-page .deliverables { text-align: left; }
-.hackathon-page .deliverable-grid { margin-top: 48px; }
-.hackathon-page .deliverable-grid article { padding-bottom: 12px; }
+.hackathon-page .deliverable-grid { margin-top: 48px; border-bottom: 1px solid #35472f; background: linear-gradient(110deg, #1c2a142e, #4cf4dc03); }
+.hackathon-page .deliverable-grid article { padding: 28px 28px 30px; }
+.hackathon-page .deliverable-grid article + article { padding-left: 28px; }
 .hackathon-page .deliverable-grid h3 { margin-top: 45px; }
-.hackathon-page .deliverable-grid article::before { width: 24px; height: 24px; top: 25px; border: 1px solid #56714f; background-size: 1px 9px, 9px 1px; transform: rotate(45deg); }
+.hackathon-page .deliverable-grid article::before { width: 29px; height: 24px; top: 25px; right: 28px; border: 1px solid #9abd737a; border-radius: 2px; background: linear-gradient(#9abd737a, #9abd737a) 50% 5px / 19px 1px no-repeat; opacity: 1; box-shadow: 4px 4px 0 #0b110c, 5px 5px 0 #69844966; }
+.hackathon-page .deliverable-grid article:nth-child(2)::before { width: 24px; height: 25px; border: 0; border-radius: 0; background: #b4d887; box-shadow: none; clip-path: polygon(17% 0, 100% 50%, 17% 100%); opacity: .7; }
+.hackathon-page .deliverable-grid article:nth-child(3)::before { width: 30px; height: 23px; border-color: #4cf4dc77; border-radius: 0; box-shadow: none; background: linear-gradient(#4cf4dc77, #4cf4dc77) 50% 7px / 18px 1px no-repeat, linear-gradient(#4cf4dc55, #4cf4dc55) 50% 12px / 18px 1px no-repeat; }
+.hackathon-page .deliverable-grid article:nth-child(3)::after { content: ""; position: absolute; right: 33px; top: 49px; width: 20px; height: 7px; background: linear-gradient(#4cf4dc77, #4cf4dc77) center / 1px 7px no-repeat, linear-gradient(#4cf4dc77, #4cf4dc77) center bottom / 20px 1px no-repeat; pointer-events: none; }
 
 /* The acid chapter is a deliberate change of pace, with etched orbital linework. */
 .hackathon-page .after {
@@ -338,7 +415,7 @@
   background: none;
   opacity: 1;
   transform: translateY(-50%);
-  box-shadow: 0 0 0 56px #2132000b, 0 0 0 57px #2132001a, 0 0 0 122px #21320008, 0 0 0 123px #21320014;
+  box-shadow: 0 0 0 56px #d8ff37, 0 0 0 57px #2132001a, 0 0 0 122px #d8ff37, 0 0 0 123px #21320014;
   z-index: -1;
 }
 
@@ -346,13 +423,14 @@
 .hackathon-page .after .section-kicker { color: #30401b; }
 .hackathon-page .after .section-kicker::after { background: linear-gradient(90deg, #30401b88, #30401b00); }
 .hackathon-page .after h2 { font-size: clamp(2.2rem, 3.8vw, 4rem); }
-.hackathon-page .after > p { margin: 0; max-width: 51ch; color: #26351c; font-weight: 450; }
+.hackathon-page .section.after > p { margin: 0; max-width: 51ch; color: #26351c; font-size: clamp(.96rem, 1.18vw, 1.08rem); line-height: 1.8; font-weight: 450; }
 
 /* Final invitation: restrained orbital contours leave the words in command. */
-.hackathon-page .apply { isolation: isolate; padding-block: clamp(100px, 10vw, 152px); border-bottom: 1px solid #2a3731; }
+.hackathon-page .apply { isolation: isolate; padding-block: clamp(100px, 10vw, 152px); border-bottom: 1px solid #2a3731; background: radial-gradient(ellipse at center, #18342526, transparent 65%); }
 .hackathon-page .apply .apply-grid { opacity: .19; background-size: 68px 68px; mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%); }
 .hackathon-page .apply .apply-grid::after { background: none; }
 .hackathon-page .apply::before, .hackathon-page .apply::after { content: ""; position: absolute; left: 50%; top: 50%; border: 1px solid #4cf4dc20; width: min(960px, 140vw); height: min(450px, 64vw); border-radius: 50%; transform: translate(-50%, -50%) rotate(-19deg); pointer-events: none; z-index: 0; }
+.hackathon-page .apply::before { border-left-color: #4cf4dc55; border-right-color: #d8ff373d; box-shadow: 0 0 0 13px #4cf4dc02, 0 0 0 14px #4cf4dc07; }
 .hackathon-page .apply::after { width: min(1110px, 164vw); height: min(555px, 85vw); transform: translate(-50%, -50%) rotate(-19deg); border-color: #d8ff3715; }
 .hackathon-page .apply > .signal { font-size: .65rem; letter-spacing: .15em; margin-bottom: 30px; }
 .hackathon-page .apply h2 { font-size: clamp(3.3rem, 7vw, 7rem); line-height: 1.02; letter-spacing: -.067em; font-weight: 500; }
@@ -361,10 +439,12 @@
 
 @media (hover: hover) and (pointer: fine) {
   .hackathon-page .section .text-link:hover span { transform: translateX(4px); }
-  .hackathon-page .track-grid article:hover { background-color: #162118; }
+  .hackathon-page .principles article:hover { background-color: #bfd88908; }
+  .hackathon-page .track-grid article:hover { box-shadow: inset 0 1px #d8ff3777, inset 0 110px 100px -110px #d8ff3729; }
   .hackathon-page .track-grid article:hover::after { transform: scaleX(1); }
-  .hackathon-page .track-grid article:hover .track-motif { transform: rotate(-6deg) scale(1.06); opacity: 1; }
+  .hackathon-page .track-grid article:hover .track-motif { transform: translateY(-3px) scale(1.045); opacity: 1; }
   .hackathon-page .assembly-controls button:hover { background: #253223; }
+  .hackathon-page .mentor-panel li:hover { color: var(--acid); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -397,13 +477,15 @@
   .hackathon-page .intro-grid { gap: 30px; }
   .hackathon-page .intro-grid > div { padding-top: 0; }
   .hackathon-page :is(.principles, .deliverable-grid) { margin-top: 43px; }
+  .hackathon-page .principles { background: linear-gradient(112deg, #17231b99, #0b120e77 42%, #1c281688); }
   .hackathon-page :is(.principles, .deliverable-grid) article,
-  .hackathon-page :is(.principles, .deliverable-grid) article + article { min-height: 0; padding: 25px 0 29px; border-right: 0; }
+  .hackathon-page :is(.principles, .deliverable-grid) article + article { min-height: 0; padding: 25px 25px 29px; border-right: 0; }
   .hackathon-page :is(.principles, .deliverable-grid) h3 { margin-top: 22px; }
   .hackathon-page :is(.principles, .deliverable-grid) p { max-width: 48ch; }
   .hackathon-page .sequence h2 { margin-bottom: 42px; }
   .hackathon-page .sequence-workbench .timeline li { grid-template-columns: 39px minmax(0, 1fr); gap: 17px; }
   .hackathon-page .sequence-workbench .timeline > li > span { width: 39px; }
+  .hackathon-page .sequence-workbench .timeline li::after { left: 56px; }
   .hackathon-page .sequence-workbench .timeline h3 { font-size: 1.2rem; }
   .hackathon-page .tracks-heading { gap: 25px; margin-bottom: 34px; }
   .hackathon-page .track-grid article { min-height: 316px; padding: 23px; }
@@ -429,7 +511,7 @@
   .hackathon-page .section h2 { font-size: clamp(2rem, 8.8vw, 2.65rem); }
   .hackathon-page .track-grid { grid-template-columns: 1fr; }
   .hackathon-page .track-grid article,
-  .hackathon-page .track-grid article:last-child { min-height: 214px; grid-column: auto; padding: 23px 108px 27px 22px; border-right: 0; }
+  .hackathon-page .track-grid article:last-child { min-height: 214px; grid-column: auto; padding: 23px 103px 27px 20px; border-right: 0; }
   .hackathon-page .track-grid h3,
   .hackathon-page .track-grid article:last-child h3 { margin-top: 30px; font-size: 1.25rem; }
   .hackathon-page .track-grid p { font-size: .8rem; }
@@ -449,6 +531,9 @@
   .hackathon-page .apply h2 { font-size: clamp(2.8rem, 12.5vw, 3.8rem); }
   .hackathon-page .apply > p:not(.signal) { font-size: .93rem; }
   .hackathon-page .apply .button { padding-inline: 18px; gap: 18px; font-size: .61rem; }
+  .hackathon-page :is(.principles, .deliverable-grid) article,
+  .hackathon-page :is(.principles, .deliverable-grid) article + article { padding-inline: 21px; }
+  .hackathon-page .principles article::after { left: 21px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

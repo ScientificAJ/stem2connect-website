@@ -58,7 +58,7 @@ const navObserver = new IntersectionObserver(entries => {
     else link.removeAttribute('aria-current');
   });
 }, { rootMargin: '-15% 0px -55% 0px' });
-links.forEach(link => { const section = document.querySelector(link.hash); if (section) navObserver.observe(section); });
+document.querySelectorAll('main > section').forEach(section => navObserver.observe(section));
 
 function mountMotion({ gsap, ScrollTrigger }) {
   gsap.registerPlugin(ScrollTrigger);
@@ -96,9 +96,9 @@ function mountMotion({ gsap, ScrollTrigger }) {
         const target = words?.length ? words : element;
         const animation = gsap.from(target, {
           y: desktop ? (words?.length ? 28 : 22) : 10,
-          opacity: .65, duration: desktop ? .8 : .45, ease: 'power3.out',
+          duration: desktop ? .8 : .45, ease: 'power3.out',
           stagger: words?.length ? .035 : 0, delay: Math.min(index * .06, .18),
-          clearProps: 'transform,opacity',
+          clearProps: 'transform',
         });
         entrances.set(element, animation);
       });
@@ -134,7 +134,7 @@ function mountMotion({ gsap, ScrollTrigger }) {
         scrollTrigger: { trigger: timeline, start: 'top 65%', end: 'bottom 55%', scrub: .35 } });
       rows.forEach(row => {
         if (!document.querySelector('.project-assembly')) ScrollTrigger.create({ trigger: row, start: 'top 65%', end: 'bottom 55%', toggleClass: 'is-current' });
-        gsap.from(row.querySelector('div'), { x: 22, opacity: .7, duration: .65, ease: 'power3.out', clearProps: 'transform,opacity',
+        gsap.from(row.querySelector('div'), { x: 22, duration: .65, ease: 'power3.out', clearProps: 'transform',
           scrollTrigger: { trigger: row, start: 'top 85%', once: true } });
       });
       gsap.to('.apply-grid', { y: -60, ease: 'none', scrollTrigger: { trigger: '.apply', start: 'top bottom', end: 'bottom top', scrub: .7 } });

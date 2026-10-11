@@ -11,10 +11,10 @@
   <link rel="preload" href="../assets/fonts/space-variable.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../enhancements.css?v=6" />
   <link rel="stylesheet" href="../hackathon-motion.css?v=2" />
-  <link rel="stylesheet" href="cinematic.css?v=1" />
-  <link rel="stylesheet" href="cinematic-sections.css?v=1" />
-  <script type="module" src="../hackathon-motion.js?v=3"></script>
-  <script type="module" src="neural-engine.js?v=1"></script>
+  <link rel="stylesheet" href="cinematic.css?v=2" />
+  <link rel="stylesheet" href="cinematic-sections.css?v=2" />
+  <script type="module" src="../hackathon-motion.js?v=4"></script>
+  <script type="module" src="neural-engine.js?v=2"></script>
 </head>
 <body class="hackathon-page">
   <header class="site-header">
@@ -68,12 +68,14 @@
         <canvas class="neural-canvas" aria-hidden="true"></canvas>
         <svg class="engine-chip" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
           <defs>
-            <linearGradient id="chip-top" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#253c35"/><stop offset=".6" stop-color="#0b1714"/><stop offset="1" stop-color="#34522d"/></linearGradient>
-            <linearGradient id="chip-side"><stop stop-color="#101e1b"/><stop offset="1" stop-color="#44684f"/></linearGradient>
+            <linearGradient id="chip-top" x1="0" y1="0" x2=".85" y2="1"><stop stop-color="#799d86"/><stop offset=".14" stop-color="#385c4b"/><stop offset=".48" stop-color="#172d23"/><stop offset=".82" stop-color="#102018"/><stop offset="1" stop-color="#486640"/></linearGradient>
+            <linearGradient id="chip-side"><stop stop-color="#0b1611"/><stop offset=".48" stop-color="#0e2018"/><stop offset=".5" stop-color="#395942"/><stop offset=".72" stop-color="#547354"/><stop offset="1" stop-color="#203c2c"/></linearGradient>
             <linearGradient id="chip-edge"><stop stop-color="#4cf4dc" stop-opacity=".3"/><stop offset=".5" stop-color="#e6ffa1"/><stop offset="1" stop-color="#4cf4dc" stop-opacity=".4"/></linearGradient>
-            <radialGradient id="chip-glow"><stop stop-color="#d8ff37" stop-opacity=".16"/><stop offset="1" stop-color="#d8ff37" stop-opacity="0"/></radialGradient>
+            <radialGradient id="chip-glow"><stop stop-color="#d8ff37" stop-opacity=".3"/><stop offset=".4" stop-color="#4cf4dc" stop-opacity=".1"/><stop offset="1" stop-color="#4cf4dc" stop-opacity="0"/></radialGradient>
+            <linearGradient id="chip-die" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5c7651"/><stop offset=".16" stop-color="#233923"/><stop offset=".6" stop-color="#111e14"/><stop offset="1" stop-color="#243e27"/></linearGradient>
           </defs>
-          <ellipse cx="300" cy="392" rx="103" ry="27" fill="url(#chip-glow)"/>
+          <ellipse cx="300" cy="375" rx="113" ry="36" fill="url(#chip-glow)"/>
+          <ellipse cx="300" cy="356" rx="65" ry="17" fill="#010604" opacity=".7"/>
           <g class="chip-stack">
             <path d="m300 244 94 52v12l-94 53-94-53v-12Z" fill="url(#chip-side)" stroke="#467663" stroke-width=".6"/>
             <path d="m300 244 94 52-94 53-94-53Z" fill="url(#chip-top)" stroke="#6a9980" stroke-width=".7"/>
@@ -81,19 +83,21 @@
             <path d="m300 234 86 48-86 48-86-48Z" fill="#10281e" stroke="url(#chip-edge)" stroke-width="1"/>
             <path d="m300 221 71 40v15l-71 40-71-40v-15Z" fill="url(#chip-side)" stroke="#669e78" stroke-width=".7"/>
             <path d="m300 221 71 40-71 40-71-40Z" fill="url(#chip-top)" stroke="url(#chip-edge)" stroke-width="1.2"/>
-            <path d="m300 229 56 32-56 31-56-31Z" fill="#17261a" stroke="#d8ff37" stroke-opacity=".65" stroke-width=".6"/>
+            <path d="m300 229 56 32-56 31-56-31Z" fill="url(#chip-die)" stroke="#d8ff37" stroke-opacity=".65" stroke-width=".6"/>
             <g stroke="#4cf4dc" stroke-opacity=".65" stroke-width="1.2">
               <path d="m224 303 8-5m1 10 8-5m1 10 8-5m1 10 8-5m1 10 8-5m1 10 8-5m1 10 8-5m1 10 8-5M377 303l-8-5m-1 10-8-5m-1 10-8-5m-1 10-8-5m-1 10-8-5m-1 10-8-5m-1 10-8-5m-1 10-8-5"/>
             </g>
+            <path d="m230 261 70-39 70 39" fill="none" stroke="#e4ffd3" stroke-opacity=".65" stroke-width="1.1"/>
+            <path d="m206 308 94 53 94-53" fill="none" stroke="#030905" stroke-width="2"/>
             <path d="m214 296 86 48 86-48" fill="none" stroke="url(#chip-edge)" stroke-width="1.8"/>
             <circle cx="300" cy="353" r="1.5" fill="#d8ff37"/>
           </g>
           <g fill="none" stroke="#4cf4dc" stroke-opacity=".2" stroke-width=".6"><path d="M300 365v27M248 331l-26 15h-37M352 331l26 15h37"/><ellipse cx="300" cy="396" rx="81" ry="19" stroke-dasharray="3 7"/></g>
         </svg>
         <div class="core"><span>AI</span></div>
-        <div class="node node-a">IDEA</div>
-        <div class="node node-b">BUILD</div>
-        <div class="node node-c">IMPACT</div>
+        <button class="node node-a" type="button" data-engine-mode="0" aria-pressed="true">IDEA</button>
+        <button class="node node-b" type="button" data-engine-mode="1" aria-pressed="false">BUILD</button>
+        <button class="node node-c" type="button" data-engine-mode="2" aria-pressed="false">IMPACT</button>
         <button class="engine-pause" type="button" aria-label="Pause AI visual animation" aria-pressed="false" hidden><svg viewBox="0 0 16 16" aria-hidden="true"><path class="pause-glyph" d="M5 3v10M11 3v10"/><path class="play-glyph" d="m5 3 8 5-8 5Z"/></svg></button>
       </div>
       <p class="scroll-cue">SCROLL TO INITIALIZE <span aria-hidden="true">&#8595;</span></p>
