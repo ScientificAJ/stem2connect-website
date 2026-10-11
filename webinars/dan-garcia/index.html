@@ -10,6 +10,8 @@
   <link rel="icon" href="../../assets/logo.jpg">
   <link rel="preload" href="../../assets/fonts/cabinet-variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="registration.css">
+  <link rel="stylesheet" href="race-ten.css">
+  <script src="race-ten.js" type="module"></script>
   <script src="registration.js" type="module"></script>
 </head>
 <body>
@@ -34,42 +36,32 @@
           <div class="event-time"><p><time datetime="2026-10-23T00:00:00Z">October 22, 2026 · 5:00 PM PDT</time></p><p class="local-time" id="local-time">Pacific time · UTC−7</p><div class="event-format"><span><svg aria-hidden="true" viewBox="0 0 20 20"><rect x="2" y="4" width="11" height="12" rx="2"/><path d="m13 8 5-3v10l-5-3"/></svg>Online on Zoom</span><span>Presentation + Q&amp;A</span></div></div>
         </div>
 
-        <div class="thinking-board" aria-labelledby="puzzle-title">
-          <div class="board-caption"><span class="handwritten">A little warm-up…</span><span class="tiny-label">THINK. TRY. DISCOVER.</span></div>
-          <div class="board-content">
-            <div class="game-tree" aria-hidden="true">
-              <svg viewBox="0 0 246 238" fill="none">
-                <path class="tree-line" d="M123 52v27M123 79 48 117M123 79l75 38M48 139v25M198 139v25M48 164l-25 25M48 164l30 25M198 164l-27 25M198 164l26 25"/>
-                <circle class="tree-root" cx="123" cy="32" r="20"/><path class="tree-root-mark" d="m115 24 16 16m0-16-16 16"/>
-                <circle class="tree-option" cx="48" cy="127" r="13"/><circle class="tree-option chosen" cx="198" cy="127" r="13"/>
-                <path class="tree-choice" d="m191 127 5 5 9-11"/>
-                <circle class="tree-leaf" cx="21" cy="197" r="7"/><circle class="tree-leaf" cx="79" cy="197" r="7"/><circle class="tree-leaf selected" cx="169" cy="197" r="7"/><circle class="tree-leaf" cx="226" cy="197" r="7"/>
-                <path class="tree-arrow" d="M150 101c26-1 59-21 78-44m-15 5 16-6-1 17"/>
-                <text x="8" y="229">many possibilities</text><text class="tree-note" x="120" y="21" transform="rotate(-8 170 21)">look ahead!</text>
-              </svg>
+        <a class="reading-jump" href="#recommended-reading"><span>Professor Garcia’s recommended paper</span><span>Optional reading <b aria-hidden="true">↓</b></span></a>
+
+        <section class="strategy-game" id="strategy-game" aria-labelledby="game-title">
+          <div class="race-eyebrow"><span>PLAY THE PAPER</span><span class="race-handwritten">A little aha! moment</span></div>
+          <h2 id="game-title">Race to <em>10.</em></h2>
+          <p class="race-rules" id="race-rules">Start at 0. You and the computer take turns adding <strong>1 or 2</strong>. Reach <strong>10</strong> on your turn to win. You go first.</p>
+          <div class="race-playfield" id="race-playfield" data-turn="you">
+            <div class="race-scoreboard"><div><span class="race-label">THE RUNNING TOTAL</span><p class="race-total"><strong id="race-total">0</strong><span>/ 10</span></p></div><span class="race-turn" id="race-turn">Your turn</span></div>
+            <ol class="race-track" aria-label="Progress from 0 to 10" id="race-track">
+              <li data-position="0" aria-current="step">0</li><li data-position="1">1</li><li data-position="2">2</li><li data-position="3">3</li><li data-position="4">4</li><li data-position="5">5</li><li data-position="6">6</li><li data-position="7">7</li><li data-position="8">8</li><li data-position="9">9</li><li data-position="10">10</li>
+            </ol>
+            <div class="race-choices" role="group" aria-label="Choose how much to add" aria-describedby="race-rules">
+              <button type="button" data-add="1" disabled><strong>Add 1</strong><span>0 → 1</span></button>
+              <button type="button" data-add="2" disabled><strong>Add 2</strong><span>0 → 2</span></button>
             </div>
-            <div class="puzzle">
-              <h2 id="puzzle-title">Your move, strategist.</h2>
-              <p>You’re <span class="x-mark">X</span>. Find the move that wins now.</p>
-              <div class="game-grid" role="group" aria-label="Tic-tac-toe: choose a square for X" aria-describedby="game-feedback">
-                <button type="button" class="square x-square" aria-label="Top left, X" disabled data-cell="0"><span aria-hidden="true">×</span></button>
-                <button type="button" class="square o-square" aria-label="Top middle, O" disabled data-cell="1"><span aria-hidden="true">○</span></button>
-                <button type="button" class="square" aria-label="Play X in top right" disabled data-cell="2"></button>
-                <button type="button" class="square o-square" aria-label="Middle left, O" disabled data-cell="3"><span aria-hidden="true">○</span></button>
-                <button type="button" class="square x-square" aria-label="Center, X" disabled data-cell="4"><span aria-hidden="true">×</span></button>
-                <button type="button" class="square" aria-label="Play X in middle right" disabled data-cell="5"></button>
-                <button type="button" class="square" aria-label="Play X in bottom left" disabled data-cell="6"></button>
-                <button type="button" class="square" aria-label="Play X in bottom middle" disabled data-cell="7"></button>
-                <button type="button" class="square" aria-label="Play X in bottom right" disabled data-cell="8"></button>
-                <svg class="winning-line" viewBox="0 0 192 192" aria-hidden="true"><path d="M27 28 166 165"/></svg>
-              </div>
-              <p class="game-feedback" id="game-feedback" role="status">Look for a line with two Xs.</p>
-              <button type="button" class="reset-game" hidden>Try again <span aria-hidden="true">↺</span></button>
-              <noscript><p class="no-script-game">The winning move is the bottom-right square.</p></noscript>
-            </div>
+            <p class="race-feedback" id="race-feedback" role="status" aria-live="polite" aria-atomic="true">Choose your first move. Can you find a winning pattern?</p>
+            <div class="race-controls"><span class="race-key"><span>You</span><span>Computer</span></span><button type="button" id="race-reset" disabled>Start over <span aria-hidden="true">↺</span></button></div>
+            <p class="race-history" id="race-history" aria-label="Moves played">Your moves will appear here.</p>
           </div>
-          <p class="board-footnote">One small board. A whole world of strategy.</p>
-        </div>
+          <details class="race-explanation" id="race-explanation">
+            <summary>Reveal the strategy <span aria-hidden="true">✧</span></summary>
+            <div><p class="race-handwritten">Start at the end. Work backwards.</p><p>Finish your turns at <strong>1 → 4 → 7 → 10</strong>. After the computer adds 1, add 2; after it adds 2, add 1. Together, the two moves always add 3.</p><p>The computer checks the possible continuations and chooses a winning move whenever one exists. Finding the outcome of every position is what it means to <strong>solve a game</strong>.</p></div>
+          </details>
+          <p class="race-source">Adapted from “1,2,…,10” on page 2 of <a href="#recommended-reading">Garcia’s recommended paper <span aria-hidden="true">↓</span></a>.</p>
+          <noscript><p class="race-no-script">Enable JavaScript to play. You can still explore the strategy above and read the paper below.</p></noscript>
+        </section>
 
         <section class="speaker" aria-labelledby="speaker-name">
           <div class="portrait-frame"><img src="dan-garcia.webp" alt="Professor Dan Garcia" width="360" height="540" loading="lazy"><span class="portrait-caption">Meet your guide ↗</span></div>
@@ -106,6 +98,11 @@
         <div class="paper-bottom" aria-hidden="true"><span>STEM2CONNECT</span><span>MADE FOR CURIOUS MINDS.</span></div>
       </section>
     </div>
+
+    <section class="research-reading" id="recommended-reading" aria-labelledby="reading-title">
+      <div class="reading-intro"><span class="reading-kicker">OPTIONAL · RECOMMENDED BY PROFESSOR GARCIA</span><h2 id="reading-title">A little reading.<br><em>A bigger spark.</em></h2><p>Curious to go deeper before the webinar? This paper is a great place to start. It’s entirely optional—bring your curiosity either way.</p><svg class="reading-spark" viewBox="0 0 140 85" fill="none" aria-hidden="true"><path d="M10 58c27-34 58-38 105-25m-15-16 20 17-23 7M37 12l3 10 11 3-11 3-3 11-3-11-11-3 11-3 3-10Z"/><path d="m113 56 2 7 8 2-8 2-2 8-2-8-8-2 8-2Z"/></svg></div>
+      <article class="research-paper"><div class="paper-meta"><span>THE GAMESCRAFTERS PAPER</span><span>2008 · PDF · 6 PAGES</span></div><h3>200 Students Can’t Be Wrong!</h3><p class="paper-subtitle">GamesCrafters, a Computational Game Theory Undergraduate Research and Development Group</p><p class="paper-authors">Yanpei Chen and colleagues, including Daniel D. Garcia · UC Berkeley</p><p class="paper-context">Discover how GamesCrafters uses computer science to solve strategy games—and how students take part in the research.</p><div class="reading-guide"><strong>A friendly way in</strong><p>Start with the introduction, try “1,2,…,10” on page 2, then explore “Solving Games” on page 3. You don’t need to understand every line of code.</p></div><a class="paper-read" href="https://people.eecs.berkeley.edu/~ddgarcia/papers/GamesCrafters2008AAAI.pdf" target="_blank" rel="noopener noreferrer"><span>Read the research paper</span><span aria-hidden="true">↗</span><span class="sr-only"> (PDF, opens in a new tab)</span></a></article>
+    </section>
 
     <section class="takeaway-strip" aria-label="What to expect"><div><span class="takeaway-number">01</span><h2>A new perspective.</h2><p>Explore the computer science behind game strategies and solving games.</p></div><div><span class="takeaway-number">02</span><h2>A real conversation.</h2><p>Bring your questions for a live Q&amp;A with Professor Garcia.</p></div><div><span class="takeaway-number">03</span><h2>Something to take away.</h2><p>Participation certificates are planned for the webinar.</p></div></section>
     <div class="closing-note" aria-hidden="true"><svg viewBox="0 0 54 54"><path d="m27 4 5 18 18 5-18 5-5 18-5-18-18-5 18-5Z"/></svg><p>The best discoveries start with <span>“what if?”</span></p><svg viewBox="0 0 54 54"><path d="m27 4 5 18 18 5-18 5-5 18-5-18-18-5 18-5Z"/></svg></div>

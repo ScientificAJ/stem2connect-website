@@ -159,52 +159,6 @@ async function connectRegistration() {
   } finally { window.clearTimeout(timer); }
 }
 
-// An accessible, local-only one-move puzzle. It has no effect on registration.
-const grid = document.querySelector('.game-grid');
-const gameFeedback = document.querySelector('#game-feedback');
-const resetGame = document.querySelector('.reset-game');
-const emptyCells = [2, 5, 6, 7, 8];
-const cellNames = ['top left', 'top middle', 'top right', 'middle left', 'center', 'middle right', 'bottom left', 'bottom middle', 'bottom right'];
-function resetPuzzle() {
-  grid.classList.remove('is-won');
-  emptyCells.forEach(index => {
-    const cell = grid.querySelector(`[data-cell="${index}"]`);
-    cell.disabled = false;
-    cell.classList.remove('x-square');
-    cell.replaceChildren();
-    cell.setAttribute('aria-label', `Play X in ${cellNames[index]}`);
-  });
-  gameFeedback.textContent = 'Look for a line with two Xs.';
-  resetGame.hidden = true;
-}
-grid.addEventListener('click', event => {
-  const cell = event.target.closest('button[data-cell]');
-  if (!cell || cell.disabled) return;
-  const index = Number(cell.dataset.cell);
-  if (index !== 8) {
-    gameFeedback.textContent = 'Not an immediate win. Try completing the diagonal.';
-    return;
-  }
-  const mark = document.createElement('span');
-  mark.setAttribute('aria-hidden', 'true');
-  mark.textContent = '×';
-  cell.append(mark);
-  cell.classList.add('x-square');
-  cell.setAttribute('aria-label', 'Bottom right, X. Winning move!');
-  // Move focus to the revealed reset action after finishing the board.
-  grid.classList.add('is-won');
-  gameFeedback.textContent = 'Three in a row. That’s thinking a move ahead!';
-  emptyCells.forEach(i => { if (i !== 8) grid.querySelector(`[data-cell="${i}"]`).disabled = true; });
-  cell.disabled = true;
-  resetGame.hidden = false;
-  resetGame.focus({ preventScroll: true });
-});
-resetGame.addEventListener('click', () => {
-  resetPuzzle();
-  grid.querySelector('[data-cell="2"]').focus({ preventScroll: true });
-});
-resetPuzzle();
-
 document.querySelector('#copy-zoom-link').addEventListener('click', async () => {
   if (success.hidden) return;
   const input = document.querySelector('#zoom-meeting-link');
