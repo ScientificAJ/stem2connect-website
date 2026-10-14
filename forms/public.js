@@ -302,8 +302,8 @@ function wireRegistration(config, { preview, slug, generation }) {
       const result = await api('register', { slug, submissionId, values, consent: 'yes', website });
       if (generation !== renderGeneration) return;
       if (!result?.registered || !result.confirmation) throw new Error('unconfirmed');
-      showSuccess(result.confirmation, config, slug);
       form.hidden = true; root.querySelector('.form-heading').hidden = true;
+      showSuccess(result.confirmation, config, slug);
     } catch (failure) {
       if (generation !== renderGeneration) return;
       const code = failure.code || failure.error?.code;
