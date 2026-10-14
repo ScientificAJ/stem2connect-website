@@ -41,9 +41,16 @@ function notify(message, error = false) {
 }
 function errorMessage(error) { return error?.message || 'Something went wrong. Please try again.'; }
 async function call(action, args = {}) {
-  try { return await api(action, { ...args, ...(state.token ? { token:state.token } : {}) }); }
+  const requestToken = state.token;
+  try {
+    const data = await api(action, { ...args, ...(requestToken ? { token:requestToken } : {}) });
+    // A completed request from a signed-out session must not rebuild private UI.
+    if (state.token !== requestToken) throw Object.assign(new Error('This session has ended. Sign in again to continue.'), { code:'session_changed' });
+    return data;
+  }
   catch (error) {
-    if (error.code === 'unauthorized' && action !== 'login') {
+    if (state.token !== requestToken) throw Object.assign(new Error('This session has ended. Sign in again to continue.'), { code:'session_changed' });
+    if (error.code === 'unauthorized' && action !== 'login' && state.token === requestToken) {
       const hadUnsaved = state.dirty;
       if (hadUnsaved) downloadJSON(state.config, `unsaved-${state.slug || 'form'}.json`);
       clearSession(); notify(hadUnsaved ? 'Your session expired. Sign in again. A recovery download of your unsaved draft was started.' : 'Your session expired. Please sign in again.', true);
@@ -56,12 +63,25 @@ async function busy(button, task) {
   const original = button?.textContent;
   if (button) { button.disabled = true; button.setAttribute('aria-busy','true'); }
   try { return await task(); }
-  catch(error) { notify(errorMessage(error), true); }
+  catch(error) { if (error.code !== 'session_changed') notify(errorMessage(error), true); }
   finally { if (button?.isConnected) { button.disabled = false; button.removeAttribute('aria-busy'); if (button.textContent === 'Working…') button.textContent = original; } }
 }
 function clearSession() {
-  state.token = null; state.user = null; state.envelope = null; state.config = null; state.dirty = false; state.forms=[];
-  clearTimeout(state.timer); $('#logout').hidden = true; $('#password').value=''; showView('login');
+  clearTimeout(state.timer); clearTimeout(previewTimer); clearTimeout(notificationTimer);
+  Object.assign(state, { token:null, expiresAt:0, user:null, forms:[], quota:null, envelope:null, config:null, title:'', slug:'', tab:'page', emailKind:'confirmation', dirty:false, preview:false, mobilePreview:false, previewScreen:'page', responsePage:0, responseData:null, emailLogs:null, versions:null, pending:false, timer:null });
+  // Hidden editor HTML can still contain participant answers and meeting details.
+  $('#studio-dialog').close();
+  for (const selector of ['#editor-content','#editor-nav','#dialog-content','#form-list','#dashboard-stats','#form-count','#active-title','#save-state','#notification','#login-status']) $(selector).textContent='';
+  $('#notification').hidden=true; $('#notification').classList.remove('error'); $('#login-status').classList.remove('error'); $('#save-state').style.color='';
+  $('#form-search').value=''; $('#logout').hidden=true;
+  $('#password').value=''; $('#password').type='password'; $('#toggle-password').textContent='Show'; $('#toggle-password').setAttribute('aria-label','Show password');
+  // Replacing the iframe discards its document and copied draft, including the confirmation screen.
+  const oldPreview=$('#page-preview'), freshPreview=oldPreview.cloneNode(false);
+  freshPreview.addEventListener('load',sendPreview); oldPreview.replaceWith(freshPreview);
+  $('#preview-screen').value='page'; updatePreviewPanel();
+  // Remove pending transport documents containing request payloads from this page.
+  $$('form[target^="studio-"], iframe[name^="studio-"]').forEach(element=>element.remove());
+  showView('login');
 }
 function showView(name) {
   for (const view of ['login','dashboard','editor']) $(`#${view}-view`).hidden = name !== view;
