@@ -28,6 +28,7 @@
   <script type="module" data-enhancement="globe">function L(t){if(t.querySelector(".observatory-poster"))return;t.classList.remove("has-live-scene","is-ready"),t.classList.add("is-static"),t.removeAttribute("tabindex"),t.removeAttribute("aria-busy"),t.setAttribute("aria-label","Globe illustrating students learning and connecting around the world.");let i=document.createElement("img");i.className="observatory-poster",i.alt="",i.decoding="async",i.addEventListener("load",()=>t.classList.add("is-ready"),{once:!0}),i.src=new URL("./assets/models/globe-poster.webp",import.meta.url).href,t.append(i)}async function T(t,i,m){if(m.aborted)return()=>{};let l=()=>L(t);if(!("Worker"in window)||!("OffscreenCanvas"in window)||!HTMLCanvasElement.prototype.transferControlToOffscreen||i.matches)return l(),()=>{};let a=document.createElement("canvas");a.className="observatory-canvas",a.setAttribute("aria-hidden","true"),t.prepend(a);let p;try{p=a.transferControlToOffscreen()}catch{return a.remove(),l(),()=>{}}let c;try{c=new Worker(new URL("./assets/runtime/graphics-worker.js?v=1",import.meta.url),{type:"module"})}catch{return a.remove(),l(),()=>{}}let u=!1,b=!0,n=0,o,r=0,s,v=new AbortController,d=e=>{u||c.postMessage(e)},f=()=>d({type:"visibility",visible:b&&!document.hidden}),h=new ResizeObserver(()=>d({type:"resize",width:t.clientWidth,height:t.clientHeight})),E=new IntersectionObserver(e=>{b=e[0].isIntersecting,f()},{threshold:.05}),A=e=>{let y=t.getBoundingClientRect();return{type:"input",name:e.type,properties:{clientX:e.clientX-y.left,clientY:e.clientY-y.top,button:e.button,pointerId:e.pointerId,key:e.key}}},k=e=>{o=A(e),n||(n=requestAnimationFrame(()=>{n=0,d(o)}))},O=e=>{e.type==="pointerdown"&&e.button===0&&t.setPointerCapture(e.pointerId),e.type==="keydown"&&["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","Home"].includes(e.key)&&e.preventDefault(),n&&(cancelAnimationFrame(n),n=0,d(o)),d(A(e))},x=()=>{r||(r=requestAnimationFrame(()=>{r=0,d({type:"scroll",y:window.scrollY})}))},I=["pointerdown","pointerup","pointercancel","pointerleave","focus","blur","keydown"],w=()=>{u||(u=!0,clearTimeout(s),v.abort(),c.terminate(),h.disconnect(),E.disconnect(),cancelAnimationFrame(n),cancelAnimationFrame(r),I.forEach(e=>t.removeEventListener(e,O)),t.removeEventListener("pointermove",k),document.removeEventListener("visibilitychange",f),window.removeEventListener("scroll",x),m.removeEventListener("abort",w),a.remove())},g=()=>{u||(w(),l())};return s=setTimeout(g,2e4),c.addEventListener("error",g,{once:!0}),c.addEventListener("message",({data:e})=>{if(e.type==="painted"){if(u)return;clearTimeout(s),t.classList.remove("is-static"),t.removeAttribute("aria-busy"),t.tabIndex=0,t.classList.add("has-live-scene","is-ready")}else e.type==="ready"?clearTimeout(s):e.type==="unavailable"&&g()}),c.postMessage({type:"init",canvas:p,transferTextures:!0,width:t.clientWidth,height:t.clientHeight,visible:!document.hidden,reduced:i.matches},[p]),Promise.all(["earth-color.webp","earth-relief.webp"].map(async e=>{let y=await fetch(new URL(`./assets/models/${e}`,import.meta.url),{signal:v.signal});if(!y.ok)throw new Error("Globe texture unavailable");return y.arrayBuffer()})).then(e=>{u||c.postMessage({type:"textures",buffers:e},e)}).catch(()=>{u||g()}),I.forEach(e=>t.addEventListener(e,O)),t.addEventListener("pointermove",k,{passive:!0}),document.addEventListener("visibilitychange",f),window.addEventListener("scroll",x,{passive:!0}),h.observe(t),E.observe(t),m.addEventListener("abort",w,{once:!0}),m.aborted&&w(),w}(()=>{let t=document.querySelector("#home.hero");if(!t)return;let i=matchMedia("(min-width: 1680px) and (hover: hover) and (pointer: fine)"),m=matchMedia("(prefers-reduced-motion: reduce)"),l=0,a,p,c;function u(n,o){return new Promise(r=>{let s=!1,v=()=>{f.disconnect(),document.removeEventListener("visibilitychange",d),o.removeEventListener("abort",v),r()},d=()=>{s&&!document.hidden&&v()},f=new IntersectionObserver(h=>{s=h[0].isIntersecting,d()});o.addEventListener("abort",v,{once:!0}),document.addEventListener("visibilitychange",d),f.observe(n),o.aborted&&v()})}async function b(){let n=++l;if(c?.abort(),a?.(),a=void 0,p?.remove(),p=void 0,!i.matches)return;c=new AbortController;let o=c.signal,r=document.createElement("div");r.className="world-observatory",r.setAttribute("role","img"),r.setAttribute("aria-label","Interactive globe with student figures reading and waving around the world. Drag or use the arrow keys to rotate."),r.setAttribute("aria-busy","true"),p=r,t.append(r);try{if(await u(r,o),o.aborted||n!==l)return;let s=await T(r,m,o);if(n!==l){s?.();return}a=s}catch(s){n===l&&!o.aborted&&L(r),s.name!=="AbortError"&&console.warn("Desktop globe could not be loaded. The website remains available.")}}i.addEventListener("change",b),m.addEventListener("change",b),b()})();</script>
   <!-- enhancement-globe:end -->
   <link rel="stylesheet" href="projector.css" />
+  <link rel="stylesheet" href="webinar-speakers.css" />
   <script src="projector.js" defer></script>
 </head>
 
@@ -54,7 +55,7 @@
   <header class="site-header" id="top">
     <nav class="navbar" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="STEM2Connect home">
-        <img src="assets/logo.jpg" alt="STEM2Connect logo" class="brand-logo" />
+        <img src="assets/optimized/stem2connect-logo-128-6ca114ccfb57.webp" alt="STEM2Connect logo" class="brand-logo" width="54" height="54" decoding="async" />
         <span class="brand-name">STEM2Connect</span>
       </a>
 
@@ -116,7 +117,7 @@
 
         <div class="hero-card" aria-label="STEM2Connect highlights">
           <div class="hero-logo-wrap">
-            <img src="assets/logo.jpg" alt="STEM2Connect logo" class="hero-logo" />
+            <img src="assets/optimized/stem2connect-logo-512-0749c6d92876.webp" srcset="assets/optimized/stem2connect-logo-256-5e030e9376eb.webp 256w, assets/optimized/stem2connect-logo-512-0749c6d92876.webp 512w, assets/stem2connect-logo-original-900.jpg 900w" sizes="(max-width: 780px) 210px, 250px" width="900" height="900" alt="STEM2Connect logo" class="hero-logo" decoding="async" />
           </div>
 
           <div class="highlight-card yellow">
@@ -406,7 +407,7 @@
 
           <div class="upcoming-timeline" role="list" aria-label="Scheduled webinar timeline">
             <article class="timeline-item spotlight event-ticket" role="listitem"><span aria-hidden="true" class="ticket-trace"></span><div class="ticket-stub"><p class="timeline-date"><span class="ticket-month">September</span> <strong class="ticket-day">25<small>th</small></strong></p><div aria-hidden="true" class="timeline-icon">
-<img alt="" decoding="async" height="1254" loading="lazy" onerror="this.removeAttribute('srcset');this.removeAttribute('sizes');this.onerror=null;" sizes="70px" src="assets/animal_welfare_webinar.png" width="1254"/>
+<img alt="" decoding="async" height="320" loading="lazy" src="assets/speakers/yhakira-gray.webp" width="320" class="event-speaker-photo" />
 </div></div>
 
 
@@ -422,7 +423,7 @@
 </article>
 
             <article class="timeline-item ai event-ticket" role="listitem"><span aria-hidden="true" class="ticket-trace"></span><div class="ticket-stub"><p class="timeline-date"><span class="ticket-month">September</span> <strong class="ticket-day">28<small>th</small></strong></p><div aria-hidden="true" class="timeline-icon">
-<img alt="" decoding="async" height="1254" loading="lazy" onerror="this.removeAttribute('srcset');this.removeAttribute('sizes');this.onerror=null;" sizes="70px" src="assets/college_application_q&a.png" width="1254"/>
+<img alt="" decoding="async" height="1254" loading="lazy" onerror="this.removeAttribute('srcset');this.removeAttribute('sizes');this.onerror=null;" sizes="70px" src="assets/college_application_q&a.png" width="1254" srcset="assets/optimized/college_application_q&a-224-09ea03947d35.webp 224w"/>
 </div></div>
 
 
@@ -437,7 +438,7 @@
 </article>
 
             <article class="timeline-item cryptography event-ticket" role="listitem" id="satvik-webinar"><span aria-hidden="true" class="ticket-trace"></span><div class="ticket-stub"><p class="timeline-date"><span class="ticket-month">October</span> <strong class="ticket-day">11<small>th</small></strong></p><div aria-hidden="true" class="timeline-icon">
-<img alt="" decoding="async" height="1254" loading="lazy" onerror="this.removeAttribute('srcset');this.removeAttribute('sizes');this.onerror=null;" sizes="70px" src="assets/satvik_webinar.png" width="1254"/>
+<img alt="" decoding="async" height="1254" loading="lazy" onerror="this.removeAttribute('srcset');this.removeAttribute('sizes');this.onerror=null;" sizes="70px" src="assets/satvik_webinar.png" width="1254" srcset="assets/optimized/satvik_webinar-224-4fa0592a6447.webp 224w"/>
 </div></div>
 
 
@@ -516,8 +517,13 @@
             ></iframe>
           </div>
           <div class="webinar-content">
-            <span class="tag">Neuroscience</span>
+            <div class="webinar-presenter">
+              <img class="webinar-speaker-photo" src="assets/speakers/ashley-juavinett.webp" alt="Dr. Ashley Juavinett" width="320" height="320" loading="lazy" decoding="async" />
+              <div class="webinar-presenter-heading">
+                <span class="tag">Neuroscience</span>
             <h3>Neuroscience with Dr. Ashley Juavinett</h3>
+              </div>
+            </div>
             <p>
               A student-focused session exploring how researchers study the brain, how science communication
               makes STEM more accessible, and how students can begin exploring research pathways.
@@ -726,8 +732,13 @@
             ></iframe>
           </div>
           <div class="webinar-content">
-            <span class="tag">AI &amp; ML</span>
+            <div class="webinar-presenter">
+              <img class="webinar-speaker-photo" src="assets/speakers/deepti-ghadiyaram.webp" alt="Dr. Deepti Ghadiyaram" width="320" height="320" loading="lazy" decoding="async" />
+              <div class="webinar-presenter-heading">
+                <span class="tag">AI &amp; ML</span>
             <h3>Safe, Reliable &amp; Efficient: Lessons in the Design of AI Systems with Dr. Deepti Ghadiyaram</h3>
+              </div>
+            </div>
             <p>
               A practical look at how AI systems work, where they fail, and what makes them safe, reliable, and
               efficient in real-world use.
@@ -816,8 +827,13 @@
             ></iframe>
           </div>
           <div class="webinar-content">
-            <span class="tag">Research</span>
+            <div class="webinar-presenter">
+              <img class="webinar-speaker-photo" src="assets/speakers/soneesh-kothagundla.webp" alt="Soneesh Kothagundla" width="320" height="320" loading="lazy" decoding="async" />
+              <div class="webinar-presenter-heading">
+                <span class="tag">Research</span>
             <h3>Cold Emailing Strategies by Soneesh Kothagundla</h3>
+              </div>
+            </div>
             <p>
               A practical webinar on reaching out for research opportunities, building credibility, and turning a cold
               email into a real opportunity.
@@ -906,8 +922,14 @@
             ></iframe>
           </div>
           <div class="webinar-content">
-            <span class="tag">Health</span>
+            <div class="webinar-presenter">
+              <img class="webinar-speaker-photo" src="assets/speakers/shannon-de-letoile.webp" alt="Dr. Shannon de l’Etoile" width="320" height="320" loading="lazy" decoding="async" />
+              <div class="webinar-presenter-heading">
+                <span class="tag">Health</span>
             <h3>The Practice and Science of Music Therapy</h3>
+                <p class="webinar-speaker-name">With Dr. Shannon de l’Etoile</p>
+              </div>
+            </div>
             <p>
               A look at how music affects the brain and supports recovery, learning, and emotional well-being across
               different populations.
@@ -966,8 +988,14 @@
             ></iframe>
           </div>
           <div class="webinar-content">
-            <span class="tag">Microbiology</span>
+            <div class="webinar-presenter">
+              <img class="webinar-speaker-photo" src="assets/speakers/brenda-wilson.webp" alt="Dr. Brenda A. Wilson" width="320" height="320" loading="lazy" decoding="async" />
+              <div class="webinar-presenter-heading">
+                <span class="tag">Microbiology</span>
             <h3>Toxins, Toxins Everywhere - Turning Foe into Friends - STEM2Connect</h3>
+                <p class="webinar-speaker-name">With Dr. Brenda A. Wilson</p>
+              </div>
+            </div>
             <p>
               An exploration of bacterial toxins, their biology, and how researchers are turning these molecules into
               tools for medicine and biotechnology.

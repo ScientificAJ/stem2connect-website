@@ -11,3 +11,8 @@ IBM Plex Mono: IBM, SIL Open Font License (PLEX-OFL.txt).
 Downloaded from the official Google Fonts CSS API.
 
 All fonts are served locally; no font service request is needed at runtime.
+
+La Belle Aurore: Kimberly Geswein, SIL Open Font License (LaBelleAurore-OFL.txt).
+Downloaded from the official Google Fonts CSS API and served as local WOFF2.
+https://fonts.google.com/specimen/La+Belle+Aurore
+License source: https://github.com/google/fonts/blob/main/ofl/labelleaurore/OFL.txt

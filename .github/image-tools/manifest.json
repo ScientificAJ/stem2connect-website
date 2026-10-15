@@ -104,6 +104,51 @@
       }
     ]
   },
+  "assets/animal_welfare_webinar.png": {
+    "sourceHash": "88bc54532875320113494330988195ed4f60cc886fe9182fbcdb2c37f2b82c9f",
+    "sourceBytes": 664824,
+    "width": 1254,
+    "height": 1254,
+    "display": 70,
+    "candidates": [
+      {
+        "path": "assets/optimized/animal_welfare_webinar-224-0e12b9e870f2.webp",
+        "width": 224,
+        "height": 224,
+        "bytes": 31770
+      }
+    ]
+  },
+  "assets/college_application_q&a.png": {
+    "sourceHash": "7c490a735def34d3596b314531ab85bf096931739f508f814217d8d8488f7f3a",
+    "sourceBytes": 629769,
+    "width": 1254,
+    "height": 1254,
+    "display": 70,
+    "candidates": [
+      {
+        "path": "assets/optimized/college_application_q&a-224-09ea03947d35.webp",
+        "width": 224,
+        "height": 224,
+        "bytes": 30552
+      }
+    ]
+  },
+  "assets/satvik_webinar.png": {
+    "sourceHash": "10b3b525dea6c6c6ef3e59deecf908f22137f8d15c6989d7a50cab4bf1335cd7",
+    "sourceBytes": 670719,
+    "width": 1254,
+    "height": 1254,
+    "display": 70,
+    "candidates": [
+      {
+        "path": "assets/optimized/satvik_webinar-224-4fa0592a6447.webp",
+        "width": 224,
+        "height": 224,
+        "bytes": 31940
+      }
+    ]
+  },
   "assets/cryptology.png": {
     "sourceHash": "0a22dad21c10897ede9df723c35317d13d911c1f34521e32b39e7a01c3eef5d6",
     "sourceBytes": 420662,

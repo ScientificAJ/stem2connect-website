@@ -40,10 +40,12 @@ export function sanitizeDesign(input = {}) {
   d.hiddenSections = [...new Set((Array.isArray(value.hiddenSections) ? value.hiddenSections : []).filter(item => [...d.invitationOrder, ...d.sectionOrder].includes(item)))];
   return d;
 }
+// Keep the saved `caveat` key compatible with existing forms while updating its visual accent.
 function designMarkup(d, preview) {
   const styles = {
     '--paper': d.backgroundColor, '--sheet': d.surfaceColor, '--ink': d.textColor, '--red': d.accentColor, '--green': d.secondaryColor,
-    '--body-font': designFonts[d.fontFamily], '--heading-font': designFonts[d.headingFont], '--handwritten-font': d.handwrittenFont === 'caveat' ? 'Caveat,cursive' : designFonts[d.headingFont],
+    '--body-font': designFonts[d.fontFamily], '--heading-font': designFonts[d.headingFont], '--handwritten-font': d.handwrittenFont === 'caveat' ? '"La Belle Aurore",cursive' : designFonts[d.headingFont],
+    '--handwritten-weight': d.handwrittenFont === 'caveat' ? 400 : 600,
     '--type-scale': d.typeScale, '--space': d.spacing, '--content-width': `${d.contentWidth}px`, '--card-radius': `${d.cardRadius}px`, '--button-radius': `${d.buttonRadius}px`
   };
   const customColors = ['backgroundColor', 'surfaceColor', 'textColor', 'accentColor', 'secondaryColor'].some(key => d[key] !== designDefaults[key]);
