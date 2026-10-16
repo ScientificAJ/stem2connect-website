@@ -43,13 +43,13 @@
   --scroll-progress: 0;
 }
 body {
-  font-family: "General Sans", system-ui, sans-serif;
+  font-family: "freight-sans-pro", "General Sans", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-kerning: normal;
 }
 h1, h2, h3, h4, .brand, .social-card strong {
-  font-family: "Cabinet Grotesk", system-ui, sans-serif;
+  font-family: "gelica", "Cabinet Grotesk", system-ui, sans-serif;
   font-weight: 800;
 }
 .hero h1, .section-heading h2, .two-column h2, .join-card h2, .contact-grid h2 {
@@ -71,7 +71,7 @@ body.hackathon-page {
   --type-gradient: linear-gradient(110deg, #d8ff37 8%, #a9f68c 38%, #4cf4dc 66%, #d8ff37 95%);
 }
 .hackathon-page :is(h1, h2, h3, h4, .brand, footer a, .core span) {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: "roc-grotesk", "Space Grotesk", system-ui, sans-serif;
   font-weight: 600;
 }
 .hackathon-page h1 { font-size: clamp(3rem, 6.5vw, 7.8rem); letter-spacing: -.045em; }
@@ -80,7 +80,7 @@ body.hackathon-page {
 .hackathon-page :is(nav, .signal, .section-kicker, .button, .node, .scroll-cue,
   .track-id, .panel-label, .ai-line, footer, .timeline > li > span,
   .principles b, .deliverable-grid article > span) {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "input-mono", "IBM Plex Mono", monospace;
 }
 .hackathon-page .brand { font-weight: 700; }
 .hackathon-page .after { --type-gradient: linear-gradient(110deg, #070809, #294023, #070809); }
@@ -234,7 +234,7 @@ a:not(.button):not(.brand):not(.motion-surface):hover { text-decoration-color: c
   border: 1px solid #4cf4dc;
   background: #070809;
   color: #f3f6ee;
-  font: 11px "IBM Plex Mono", monospace;
+  font: 11px "input-mono", "IBM Plex Mono", monospace;
   cursor: pointer;
 }
 

@@ -12,17 +12,17 @@
 .hackathon-page .hero .signal { color: #b2c4a3; letter-spacing: .17em; }
 .hackathon-page .signal span { box-shadow: none; transform: rotate(-8deg); }
 .hackathon-page .hero h1 { font-weight: 600; font-size: clamp(3rem,5.65vw,6.3rem); line-height: 1.03; letter-spacing: -.065em; }
-.hackathon-page .hero h1 em { width: fit-content; position: relative; font: 600 1.73em/.83 'Caveat Sketch',cursive; letter-spacing: -.025em; margin-top: .06em; margin-left: -.025em; padding-right: .06em; transform: rotate(-4deg); }
+.hackathon-page .hero h1 em { width: fit-content; position: relative; font: 600 1.73em/.83 "felt-tip-roman", 'Caveat Sketch',cursive; letter-spacing: -.025em; margin-top: .06em; margin-left: -.025em; padding-right: .06em; transform: rotate(-4deg); }
 .hackathon-page .hero h1 em .motion-word { background: none; color: var(--acid); -webkit-text-fill-color: currentColor; }
 .hackathon-page .hero h1 em::after { content: ''; position: absolute; height: .1em; bottom: -.09em; left: .04em; right: -.05em; border-bottom: 2px solid #d8ff37d9; border-radius: 40% 38% 48% 47%; transform: rotate(1deg); box-shadow: 0 4px 0 -3px #d8ff3799; }
 .hero-pencil-note { position: absolute; top: 39%; left: 49%; display: flex; align-items: center; gap: 6px; transform: rotate(-5deg); color: #bacb9c; pointer-events: none; }
-.hero-pencil-note span { font: 500 clamp(20px,2vw,28px)/.97 'Caveat Sketch',cursive; white-space: nowrap; }
+.hero-pencil-note span { font: 500 clamp(20px,2vw,28px)/.97 "felt-tip-roman", 'Caveat Sketch',cursive; white-space: nowrap; }
 .hero-pencil-note svg { width: 73px; height: 40px; fill: none; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; }
 .hackathon-page .hero-lede { max-width: 41ch; margin-top: 40px; }
 .hackathon-page .welcome { max-width: 48ch; }
 .hackathon-page .hero-actions { gap: 20px; margin-top: 30px; }
-.hackathon-page .button { position: relative; isolation: isolate; border-radius: 3px 7px 4px 6px / 5px 3px 8px 4px; font: 700 23px/1.15 'Caveat Sketch',cursive; letter-spacing: .005em; text-transform: none; min-height: 54px; padding-inline: 23px; }
-.hackathon-page .hero-actions .button, .hackathon-page .apply .button { font-family: 'Caveat Sketch',cursive; }
+.hackathon-page .button { position: relative; isolation: isolate; border-radius: 3px 7px 4px 6px / 5px 3px 8px 4px; font: 700 23px/1.15 "felt-tip-roman", 'Caveat Sketch',cursive; letter-spacing: .005em; text-transform: none; min-height: 54px; padding-inline: 23px; }
+.hackathon-page .hero-actions .button, .hackathon-page .apply .button { font-family: "felt-tip-roman", 'Caveat Sketch',cursive; }
 .hackathon-page .button::after { content: ''; position: absolute; inset: 3px -4px -4px 2px; border: 1px solid currentColor; border-radius: 6px 2px 5px 3px / 3px 6px 3px 7px; opacity: .48; rotate: -.7deg; pointer-events: none; }
 .hackathon-page .hero .primary { background: #d8ff37; box-shadow: 3px 4px 0 #090c0a,4px 5px 0 #d8ff3780; border-radius: 4px 9px 3px 4px; rotate: -.8deg; }
 .hackathon-page .primary::after { border-color: #718022; inset: 4px 5px 3px 4px; opacity: .43; }
@@ -38,8 +38,8 @@
 .neural-machine .engine-dial { opacity: .32; }
 .neural-machine .engine-aura { opacity: .65; }
 .study-heading { position: absolute; top: -5px; left: 3%; right: 3%; display: flex; align-items: center; justify-content: space-between; gap: 10px; z-index: 7; }
-.study-heading > span { font: 500 clamp(16px,1.5vw,21px)/1.1 'Caveat Sketch',cursive; color: #b6c4a1; transform: rotate(-2deg); }
-.engine-study { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 10px; border: 1px dashed #a8ba8380; border-radius: 4px 7px 3px 4px; background: #0d140de8; color: #d5e4bf; font: 600 18px/1 'Caveat Sketch',cursive; cursor: pointer; white-space: nowrap; }
+.study-heading > span { font: 500 clamp(16px,1.5vw,21px)/1.1 "felt-tip-roman", 'Caveat Sketch',cursive; color: #b6c4a1; transform: rotate(-2deg); }
+.engine-study { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 10px; border: 1px dashed #a8ba8380; border-radius: 4px 7px 3px 4px; background: #0d140de8; color: #d5e4bf; font: 600 18px/1 "felt-tip-roman", 'Caveat Sketch',cursive; cursor: pointer; white-space: nowrap; }
 .engine-study[hidden] { display: none; }
 .engine-study svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.2; stroke-linecap: round; fill: none; }
 .engine-study:is(:hover,[aria-pressed='true']) { color: #e9ffc0; border-color: var(--acid); background: #28311c; }
@@ -53,9 +53,9 @@
 .sketch-spark { stroke: var(--acid); opacity: .8; transform-origin: 478px 99px; }
 .sketch-loop { opacity: .14; stroke-width: .8; stroke-dasharray: 1 5; }
 .study-caption { position: absolute; bottom: -3%; left: 27%; right: 13%; display: flex; justify-content: center; align-items: center; color: #d0dfa5; pointer-events: none; transform: rotate(-3deg); }
-.study-note { font: 500 clamp(22px,2.05vw,29px)/1.1 'Caveat Sketch',cursive; }
+.study-note { font: 500 clamp(22px,2.05vw,29px)/1.1 "felt-tip-roman", 'Caveat Sketch',cursive; }
 .study-caption svg { width: 75px; height: 48px; fill: none; stroke: currentColor; stroke-width: 1; flex-shrink: 0; }
-.hackathon-page .neural-machine .node { font: 600 21px/1 'Caveat Sketch',cursive; letter-spacing: .025em; min-height: 44px; padding: 8px 14px; border-radius: 3px 7px 4px 5px; box-shadow: none; transform: rotate(-4deg); }
+.hackathon-page .neural-machine .node { font: 600 21px/1 "felt-tip-roman", 'Caveat Sketch',cursive; letter-spacing: .025em; min-height: 44px; padding: 8px 14px; border-radius: 3px 7px 4px 5px; box-shadow: none; transform: rotate(-4deg); }
 .hackathon-page .neural-machine .node-b { transform: rotate(4deg); }
 .hackathon-page .neural-machine .node-c { transform: rotate(-2deg); }
 .hackathon-page .neural-machine .node::before { width: 5px; height: 5px; border-radius: 50%; }
@@ -70,9 +70,9 @@
 .hackathon-page .engine-pause { width: 44px; height: 44px; border-radius: 47% 53% 44% 56%; border-color: #abbc8280; background: #0a110be6; }
 .notebook-thread { position: relative; height: 95px; margin: 35px 0 -35px; color: #c5d4a6; }
 .notebook-thread svg { width: 100%; height: 90px; fill: none; stroke: currentColor; stroke-width: 1.15; stroke-linecap: round; opacity: .42; }
-.notebook-thread span { position: absolute; bottom: 0; left: 44%; background: #090c0a; padding: 0 12px; font: 500 24px/1.1 'Caveat Sketch',cursive; transform: rotate(-3deg); }
+.notebook-thread span { position: absolute; bottom: 0; left: 44%; background: #090c0a; padding: 0 12px; font: 500 24px/1.1 "felt-tip-roman", 'Caveat Sketch',cursive; transform: rotate(-3deg); }
 .cinema-entered .thread-stroke { stroke-dasharray: 1300; animation: thread-pencil 1.8s ease-out both; }
-.hackathon-page .apply h2 em { font-family: 'Caveat Sketch',cursive; font-weight: 600; letter-spacing: -.025em; font-size: 1.24em; }
+.hackathon-page .apply h2 em { font-family: "felt-tip-roman", 'Caveat Sketch',cursive; font-weight: 600; letter-spacing: -.025em; font-size: 1.24em; }
 .hackathon-page .apply h2 em .motion-word { background: none; color: var(--acid); -webkit-text-fill-color: currentColor; }
 @keyframes leader-pencil { from { stroke-dashoffset: 280; } to { stroke-dashoffset: 0; } }
 @keyframes thread-pencil { from { stroke-dashoffset: 1300; } to { stroke-dashoffset: 0; } }

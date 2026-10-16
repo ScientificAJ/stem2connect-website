@@ -21,7 +21,7 @@ const designDefaults = {
   backgroundColor: '#fffaf2', surfaceColor: '#fffdf7', textColor: '#261e1c', accentColor: '#a7211d', secondaryColor: '#28734f',
   heroLayout: 'split', formSide: 'right', invitationOrder: ['game', 'speaker'], sectionOrder: ['reading', 'extras', 'takeaways', 'closing'], hiddenSections: []
 };
-const designFonts = { general: 'General,system-ui,sans-serif', cabinet: 'Cabinet,system-ui,sans-serif', space: 'Plex,monospace' };
+const designFonts = { general: 'freight-sans-pro,General,system-ui,sans-serif', cabinet: 'gelica,Cabinet,system-ui,sans-serif', space: 'input-mono,Plex,monospace' };
 /** The editor uses bounded design tokens, never arbitrary CSS or executable markup. */
 export function sanitizeDesign(input = {}) {
   const value = input && typeof input === 'object' ? input : {};
@@ -44,7 +44,7 @@ export function sanitizeDesign(input = {}) {
 function designMarkup(d, preview) {
   const styles = {
     '--paper': d.backgroundColor, '--sheet': d.surfaceColor, '--ink': d.textColor, '--red': d.accentColor, '--green': d.secondaryColor,
-    '--body-font': designFonts[d.fontFamily], '--heading-font': designFonts[d.headingFont], '--handwritten-font': d.handwrittenFont === 'caveat' ? '"La Belle Aurore",cursive' : designFonts[d.headingFont],
+    '--body-font': designFonts[d.fontFamily], '--heading-font': designFonts[d.headingFont], '--handwritten-font': d.handwrittenFont === 'caveat' ? 'felt-tip-roman,"La Belle Aurore",cursive' : designFonts[d.headingFont],
     '--handwritten-weight': d.handwrittenFont === 'caveat' ? 400 : 600,
     '--type-scale': d.typeScale, '--space': d.spacing, '--content-width': `${d.contentWidth}px`, '--card-radius': `${d.cardRadius}px`, '--button-radius': `${d.buttonRadius}px`
   };

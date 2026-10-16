@@ -76,7 +76,7 @@
   margin-top: 10px;
   padding-bottom: 8px;
   border-bottom-color: #d8ff3766;
-  font: 500 .7rem/1.5 "IBM Plex Mono", monospace;
+  font: 500 .7rem/1.5 "input-mono", "IBM Plex Mono", monospace;
 }
 
 .hackathon-page .section .text-link span {
@@ -380,7 +380,7 @@
 .hackathon-page .panel-label { margin: 0; max-width: 31ch; color: var(--cyan); font-size: .65rem; line-height: 1.6; letter-spacing: .12em; }
 .hackathon-page .mentor-panel ul { margin: 26px 0 22px; }
 .hackathon-page .mentor-panel li { display: flex; align-items: baseline; gap: 14px; padding: 17px 0; border-color: #49603b66; font-size: .91rem; line-height: 1.5; transition: color .2s ease; }
-.hackathon-page .mentor-panel li::before { flex-shrink: 0; margin-right: 0; font: 400 .8rem "IBM Plex Mono", monospace; color: #d8ff3799; }
+.hackathon-page .mentor-panel li::before { flex-shrink: 0; margin-right: 0; font: 400 .8rem "input-mono", "IBM Plex Mono", monospace; color: #d8ff3799; }
 .hackathon-page .mentor-panel .text-link { width: 100%; margin-top: 0; }
 
 .hackathon-page .deliverables { text-align: left; }

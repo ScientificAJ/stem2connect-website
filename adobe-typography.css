@@ -1,0 +1,10 @@
+/* Adobe Fonts project: STEM2CONNECT (zmn3juo).
+   Existing self-hosted families remain in every original rule as fallbacks.
+   These shared roles are available for future typography refinements. */
+:root {
+  --font-display: "gelica", "Cabinet Grotesk", Cabinet, system-ui, sans-serif;
+  --font-body: "freight-sans-pro", "General Sans", General, Inter, system-ui, sans-serif;
+  --font-technical-display: "roc-grotesk", "Space Grotesk", Orbitron, system-ui, sans-serif;
+  --font-handwritten: "felt-tip-roman", "Caveat Sketch", "La Belle Aurore", cursive;
+  --font-mono: "input-mono", "IBM Plex Mono", Plex, ui-monospace, monospace;
+}

@@ -14,6 +14,7 @@ import shutil
 ROOT = Path(__file__).resolve().parents[2]
 SHARED = (
     "assets",
+    "adobe-typography.css",
     "motion.css",
     "enhancements.css",
     "scene-client.js",

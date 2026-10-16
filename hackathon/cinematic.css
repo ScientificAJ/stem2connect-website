@@ -15,7 +15,7 @@
 .hackathon-page .hero-copy { z-index: 2; padding-bottom: 8px; }
 .hackathon-page .signal { font-size: 10px; letter-spacing: .16em; display: flex; align-items: center; gap: 12px; margin-bottom: 25px; }
 .hackathon-page .signal span { width: 6px; height: 6px; margin: 0; box-shadow: 0 0 14px #d8ff3755; }
-.hackathon-page .hero h1 { font-family: 'Space Grotesk',sans-serif; font-size: clamp(3rem,6.05vw,7.3rem); font-weight: 600; letter-spacing: -.07em; line-height: .99; text-wrap: initial; }
+.hackathon-page .hero h1 { font-family: "roc-grotesk", 'Space Grotesk',sans-serif; font-size: clamp(3rem,6.05vw,7.3rem); font-weight: 600; letter-spacing: -.07em; line-height: .99; text-wrap: initial; }
 .hackathon-page .hero h1 em { display: block; margin-top: .1em; font-size: 1.4em; line-height: .9; letter-spacing: -.085em; }
 .hackathon-page .hero h1 br { display: none; }
 .hackathon-page .hero h1 em .motion-word { background: linear-gradient(115deg,#edffb5 5%,#d8ff37 43%,#6ef0b2 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -42,7 +42,7 @@
 .neural-machine.engine-ready .neural-poster { visibility: hidden; }
 .neural-machine .engine-chip { z-index: 2; transform: rotateY(var(--engine-x)) rotateX(var(--engine-y)); }
 .hackathon-page .neural-machine .core { top: 38.8%; left: 42%; width: 16%; height: 10%; inset-inline-end: auto; bottom: auto; background: none; border: 0; box-shadow: none; transform: rotate(-1deg) rotateX(20deg); z-index: 3; pointer-events: none; }
-.hackathon-page .neural-machine .core span { font: 500 clamp(20px,2.5vw,32px) 'Space Grotesk',sans-serif; color: #dfff9c; letter-spacing: -.05em; text-shadow: 0 0 12px #d8ff3740; }
+.hackathon-page .neural-machine .core span { font: 500 clamp(20px,2.5vw,32px) "roc-grotesk", 'Space Grotesk',sans-serif; color: #dfff9c; letter-spacing: -.05em; text-shadow: 0 0 12px #d8ff3740; }
 .hackathon-page .neural-machine .node { z-index: 4; background: #0a100ee6; border: 1px solid #374c3f; padding: 8px 12px; font-size: 9px; letter-spacing: .12em; box-shadow: 0 3px 15px #0003; }
 .hackathon-page .neural-machine .node::before { content: ''; display: inline-block; width: 4px; height: 4px; border: 1px solid currentColor; margin-right: 8px; vertical-align: 1px; }
 .hackathon-page .neural-machine .node-a { top: 21%; left: 1%; }
@@ -87,7 +87,7 @@
 
 /* The instrument keeps the same silhouette; light and controls supply its depth. */
 .hackathon-page .neural-machine .node {
-  min-height: 44px; font-family: 'IBM Plex Mono',monospace; font-weight: 500;
+  min-height: 44px; font-family: "input-mono", 'IBM Plex Mono',monospace; font-weight: 500;
   cursor: pointer; appearance: none; border-radius: 3px;
   transition: color .25s, border-color .25s, background .25s, box-shadow .25s;
   box-shadow: 0 8px 24px #0006, inset 0 1px #ddffe90a;
