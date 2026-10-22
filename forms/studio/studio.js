@@ -338,14 +338,18 @@ function renderPage() {
     section('closing','The closing thought')+section('brand','Brand & navigation','Edit the organization, header button, contact link, and footer text.')+section('meta','Page identity','The browser title and description used when you share the page.');
 }
 function imagePreviewURL(value){if(/^data:image\/(jpeg|png|webp);base64,/i.test(value))return value;return safeURL(value);}
+function registrationCloseLabel(value,zone) {
+  if(!value)return 'Uses the event start time.';
+  return new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'long',timeZone:zone}).format(new Date(value));
+}
 function deadlineHelper() {
   const form=state.config.form||{}, zone=state.config.event?.timeZone||'UTC';
-  return `<section class="section-card" data-edit-section="form"><h3>When does registration close?</h3><p>By default, registration closes when the event starts. Choose a different deadline below if needed. The server enforces the closing time, even if someone leaves the page open.</p><div class="fields-grid"><div class="control wide"><label class="control-label" for="registration-close-date">Registration closing date & time</label><input id="registration-close-date" type="datetime-local" value="${attr(eventLocalValue(form.closesAtUtc,zone))}"><span class="help">Time zone: ${esc(zone)}. Leave empty to close at the event start. Save and publish to apply changes.</span></div>${control('form.showClosingCountdown',form.showClosingCountdown!==false,'showClosingCountdown')}</div><p class="small muted" id="registration-close-summary">${esc(form.closesAtUtc ? dateLabel(form.closesAtUtc) : 'Uses the event start time.')}</p><button class="button quiet small" type="button" id="use-event-deadline">Use event start time</button></section>`;
+  return `<section class="section-card" data-edit-section="form"><h3>When does registration close?</h3><p>By default, registration closes when the event starts. Choose a different deadline below if needed. The server enforces the closing time, even if someone leaves the page open.</p><div class="fields-grid"><div class="control wide"><label class="control-label" for="registration-close-date">Registration closing date & time</label><input id="registration-close-date" type="datetime-local" value="${attr(eventLocalValue(form.closesAtUtc,zone))}"><span class="help">Time zone: ${esc(zone)}. Leave empty to close at the event start. Save and publish to apply changes.</span></div>${control('form.showClosingCountdown',form.showClosingCountdown!==false,'showClosingCountdown')}</div><p class="small muted" id="registration-close-summary">${esc(registrationCloseLabel(form.closesAtUtc,zone))}</p><button class="button quiet small" type="button" id="use-event-deadline">Use event start time</button></section>`;
 }
 function bindDeadlineHelper(root) {
   const date=$('#registration-close-date',root);if(!date)return;
   const summary=$('#registration-close-summary',root);
-  const refresh=()=>{summary.textContent=state.config.form.closesAtUtc ? dateLabel(state.config.form.closesAtUtc) : 'Uses the event start time.';};
+  const refresh=()=>{summary.textContent=registrationCloseLabel(state.config.form.closesAtUtc,state.config.event?.timeZone||'UTC');};
   date.addEventListener('change',()=>{try{const utc=date.value?localTimeToUtc(date.value,state.config.event?.timeZone||'UTC'):'';setPath('form.closesAtUtc',utc);date.setCustomValidity('');refresh();}catch(error){date.setCustomValidity('Choose a valid closing date and time.');date.reportValidity();notify(errorMessage(error),true);}});
   $('#use-event-deadline',root).addEventListener('click',()=>{setPath('form.closesAtUtc','');date.value='';date.setCustomValidity('');refresh();});
 }
