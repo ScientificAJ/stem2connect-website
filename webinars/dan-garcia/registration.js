@@ -1,6 +1,8 @@
 import { submitRegistration, createSubmissionId } from './registration-transport.js';
+import { registrationClosed, countdownMarkup, mountCountdown } from '../../forms/deadline.js';
 
 const EVENT_START = new Date('2026-10-23T00:00:00Z');
+const DEADLINE = { closesAtUtc: '2026-10-23T00:00:00Z' };
 const CONTACT = 'stem2connect@gmail.com';
 const ZOOM_URL = 'https://ethz.zoom.us/j/68701406358?from=addon';
 const ZOOM_MEETING_ID = '687 0140 6358';
@@ -17,6 +19,15 @@ let endpoint = '';
 let sending = false;
 let submissionId = '';
 let lastPayload = '';
+const countdownSlot = document.querySelector('#registration-countdown-slot');
+countdownSlot.innerHTML = countdownMarkup(DEADLINE.closesAtUtc);
+let registrationHasClosed = false;
+const closeRegistration = () => {
+  registrationHasClosed = true;
+  submitButton.disabled = true;
+  if (success.hidden) showStatus('Registration is closed. The webinar has started.');
+};
+mountCountdown(countdownSlot.querySelector('.registration-countdown'), Date.parse(DEADLINE.closesAtUtc), closeRegistration);
 
 // The event is fixed in UTC so visitor timezones and DST are handled by Intl.
 try {
@@ -87,6 +98,7 @@ form.addEventListener('input', event => {
 form.addEventListener('submit', async event => {
   event.preventDefault();
   if (sending) return;
+  if (registrationClosed(DEADLINE)) { closeRegistration(); return; }
   if (!endpoint) {
     showUnavailable('Registration is not available just yet.');
     return;
@@ -125,7 +137,9 @@ form.addEventListener('submit', async event => {
     success.focus({ preventScroll: true });
     success.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'nearest' });
   } catch (error) {
-    if (error.code === 'timeout') {
+    if (error.code === 'closed') {
+      closeRegistration();
+    } else if (error.code === 'timeout') {
       showStatus('We could not confirm your registration yet. Please try again; the same registration will not be counted twice.');
     } else if (error.code === 'invalid') {
       showStatus('Your registration could not be accepted. Please check your details and try again.');
@@ -140,6 +154,7 @@ form.addEventListener('submit', async event => {
     form.removeAttribute('aria-busy');
     controls.forEach(control => { control.disabled = false; });
     submitLabel.textContent = 'Register for the webinar';
+    if (registrationHasClosed || registrationClosed(DEADLINE)) closeRegistration();
   }
 });
 
@@ -152,8 +167,9 @@ async function connectRegistration() {
     const config = await response.json();
     if (!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(config.endpoint || '')) throw new Error('unavailable');
     endpoint = config.endpoint;
-    submitButton.disabled = false;
-    showStatus('');
+    submitButton.disabled = registrationClosed(DEADLINE);
+    if (registrationHasClosed || registrationClosed(DEADLINE)) closeRegistration();
+    else showStatus('');
   } catch (_) {
     showUnavailable('Registration is not available just yet.');
   } finally { window.clearTimeout(timer); }

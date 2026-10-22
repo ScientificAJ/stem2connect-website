@@ -45,7 +45,7 @@ export function acceptsAcknowledgment(event, frameWindow, submissionId, nonce) {
     && data.type === 'stem2connect:registration-result' && data.version === 1
     && data.eventId === EVENT_ID && data.submissionId === submissionId && data.nonce === nonce
     && typeof data.ok === 'boolean'
-    && ['registered', 'invalid', 'busy', 'unavailable'].includes(data.code)
+    && ['registered', 'invalid', 'busy', 'unavailable', 'closed'].includes(data.code)
     && data.ok === (data.code === 'registered');
 }
 

@@ -1,4 +1,5 @@
 import { api } from './api.js';
+import { registrationClosed, registrationDeadline, countdownMarkup, mountCountdown } from './deadline.js';
 import { mountRaceGame } from './race-ten.js';
 
 const root = document.querySelector('#form-root');
@@ -6,6 +7,7 @@ const parameters = new URLSearchParams(location.search);
 const previewMode = parameters.get('preview') === '1';
 let disposeGame = () => {};
 let disposeRegistration = () => {};
+let disposeCountdown = () => {};
 let renderGeneration = 0;
 let lastPreviewScreen = null;
 const arrow = '<span aria-hidden="true">↗</span>';
@@ -136,15 +138,16 @@ function readingMarkup(reading) {
 
 export function renderForm(config, { preview = false, slug = parameters.get('form') || '', screen = 'page' } = {}) {
   const previewPosition = { left: window.scrollX || 0, top: window.scrollY || 0 };
-  disposeGame(); disposeRegistration(); renderGeneration++;
+  disposeGame(); disposeRegistration(); disposeCountdown(); renderGeneration++;
   const generation = renderGeneration;
   const original = config || {};
   const design = sanitizeDesign(original.design);
   const hidden = new Set(design.hiddenSections);
-  const c = { ...original, game: { ...original.game, enabled: Boolean(original.game?.enabled) && !hidden.has('game') }, speaker: { ...original.speaker, enabled: Boolean(original.speaker?.enabled) && !hidden.has('speaker') }, reading: { ...original.reading, enabled: Boolean(original.reading?.enabled) && !hidden.has('reading') } };
+  const c = { ...original, form: { ...original.form }, game: { ...original.game, enabled: Boolean(original.game?.enabled) && !hidden.has('game') }, speaker: { ...original.speaker, enabled: Boolean(original.speaker?.enabled) && !hidden.has('speaker') }, reading: { ...original.reading, enabled: Boolean(original.reading?.enabled) && !hidden.has('reading') } };
   if (!c.reading.enabled && c.game.sourceUrl === '#recommended-reading') c.game.sourceUrl = c.reading.url || '';
 
   const brand = c.brand || {}, hero = c.hero || {}, event = c.event || {}, speaker = c.speaker || {}, form = c.form || {}, reading = c.reading || {};
+  if (registrationClosed(form, event)) form.registrationOpen = false;
   const delivery = emailDelivery(c);
   const fields = Array.isArray(c.fields) ? c.fields.slice(0, 30).map(field => field.semantic === 'email' && delivery && /^For your confirmation, Zoom link, and reminders/.test(field.help || '') ? { ...field, help: deliveryHelp(delivery) } : field) : [];
   let optionalDivider = false;
@@ -161,7 +164,7 @@ export function renderForm(config, { preview = false, slug = parameters.get('for
   document.querySelector('meta[name="description"]')?.setAttribute('content', c.meta?.description || '');
   document.querySelector('meta[name="robots"]')?.setAttribute('content', preview || c.meta?.noindex !== false ? 'noindex, nofollow' : 'index, follow');
   root.innerHTML = `<div ${designMarkup(design, preview)}>${preview ? '<div class="preview-notice" role="status">STUDIO PREVIEW · Registration is disabled · Draft changes are not live · Click a section to edit it</div>' : ''}<a class="skip-link" href="#registration">Skip to registration</a>
-    <header class="masthead"><a class="brand" href="${escape(safeUrl(brand.homeUrl) || '/')}">${picture(brand.logoUrl, '', 'width="42" height="42"')}<span>${escape(brand.name)}</span></a><span class="masthead-note">${escape(brand.tagline)} <em>${escape(brand.taglineAccent)}</em></span><a class="header-register" href="#registration">${escape(brand.headerCta)} ${arrow}</a></header>
+    <header class="masthead"><a class="brand" href="${escape(safeUrl(brand.homeUrl) || '/')}">${picture(brand.logoUrl, '', 'width="42" height="42"')}<span>${escape(brand.name)}</span></a><span class="masthead-note">${escape(brand.tagline)} <em>${escape(brand.taglineAccent)}</em></span>${form.showClosingCountdown !== false ? countdownMarkup(form.closesAtUtc || event.startUtc) : ''}<a class="header-register" href="#registration">${escape(brand.headerCta)} ${arrow}</a></header>
     <main id="main"><div class="page-heading"><span><i aria-hidden="true"></i> ${escape(hero.series)}</span><span>${escape(hero.eventLabel)}</span></div><div class="invitation-layout"><section class="invitation" aria-labelledby="event-heading"><div class="hero-copy"><div class="chapter-label"><span>${escape(hero.chapter)}</span><svg aria-hidden="true" viewBox="0 0 91 28"><path d="M2 17C21 3 43 5 76 17M66 3l13 14-20 6"/></svg></div>
     <h1 id="event-heading">${lines(hero.title)} ${hero.titleAccent ? `<span class="written-title">${lines(hero.titleAccent)}${underline}</span>` : ''}</h1><p class="subject">${lines(hero.subject)}<br><span>${lines(hero.byline)}</span></p><p class="introduction">${lines(hero.introduction)}</p>
     </div><div class="event-details"><div class="date-stamp" aria-hidden="true"><span>${escape(event.month)}</span><strong>${escape(event.day)}</strong><span>${escape(event.weekday)}</span></div><div class="event-time"><p><time datetime="${escape(event.startUtc)}">${escape(event.displayDate)} · ${escape(event.displayTime)}</time></p><p class="local-time" id="local-time">${escape(event.timeZone)}</p><div class="event-format"><span><svg aria-hidden="true" viewBox="0 0 20 20"><rect x="2" y="4" width="11" height="12" rx="2"/><path d="m13 8 5-3v10l-5-3"/></svg>${escape(hero.format || event.location)}</span><span>${escape(hero.sessionFormat)}</span></div></div></div>
@@ -175,6 +178,16 @@ export function renderForm(config, { preview = false, slug = parameters.get('for
   for (const image of root.querySelectorAll('img')) image.addEventListener('error', () => { image.classList.add('image-unavailable'); image.setAttribute('title', image.alt || 'Image unavailable'); });
   disposeGame = mountRaceGame(root.querySelector('#strategy-game'));
   disposeRegistration = wireRegistration(c, { preview, slug, generation: renderGeneration });
+  const closeForm = () => {
+    if (preview || generation !== renderGeneration) return;
+    const liveForm = root.querySelector('#registration-form');
+    if (!liveForm || liveForm.hidden) return;
+    liveForm.querySelector('[type="submit"]').disabled = true;
+    const notice = liveForm.querySelector('#form-status');
+    notice.classList.remove('is-pending');
+    notice.textContent = form.closedMessage || 'Registration is now closed.';
+  };
+  disposeCountdown = mountCountdown(root.querySelector('.registration-countdown'), form.registrationOpen === false ? 0 : registrationDeadline(form, event), closeForm);
   if (preview && screen === 'confirmation') {
     const formElement = root.querySelector('#registration-form');
     if (formElement) formElement.hidden = true;
@@ -270,7 +283,7 @@ function wireRegistration(config, { preview, slug, generation }) {
   const submit = form.querySelector('[type="submit"]');
   const consent = form.querySelector('#privacy-consent');
   const controls = [...form.querySelectorAll('input,select,textarea,button')];
-  let sending = false, submissionId = '', fingerprint = '', slowTimer;
+  let sending = false, closedByServer = false, submissionId = '', fingerprint = '', slowTimer;
   const error = (input, message) => { const target = root.querySelector(`#${input.id === 'privacy-consent' ? 'consent' : input.id}-error`); if (target) target.textContent = message; if (message) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid'); };
   form.addEventListener('input', e => {
     error(e.target, '');
@@ -279,6 +292,7 @@ function wireRegistration(config, { preview, slug, generation }) {
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (preview || sending) return;
+    if (registrationClosed(copy, config.event)) { submit.disabled = true; status.textContent = copy.closedMessage || 'Registration is now closed.'; return; }
     let firstInvalid;
     const values = Object.create(null);
     for (let i = 0; i < fields.length; i++) {
@@ -309,9 +323,10 @@ function wireRegistration(config, { preview, slug, generation }) {
     } catch (failure) {
       if (generation !== renderGeneration) return;
       const code = failure.code || failure.error?.code;
+      if (code === 'closed') closedByServer = true;
       status.textContent = code === 'closed' ? copy.closedMessage || 'Registration is now closed.' : code === 'invalid' ? messages.invalid || 'Please check your details and try again.' : code === 'rate_limited' || code === 'busy' ? messages.busy || 'Please wait a moment and try again.' : code === 'timeout' ? messages.timeout || 'We could not confirm your registration. Retry safely with the same details.' : messages.unavailable || 'Registration could not be confirmed. Please try again.';
     } finally {
-      clearTimeout(slowTimer); sending = false; form.removeAttribute('aria-busy'); controls.forEach(input => { input.disabled = false; }); submit.querySelector('span').textContent = copy.submitLabel; status.classList.remove('is-pending');
+      clearTimeout(slowTimer); sending = false; form.removeAttribute('aria-busy'); controls.forEach(input => { input.disabled = false; }); submit.disabled = closedByServer || registrationClosed(copy, config.event); submit.querySelector('span').textContent = copy.submitLabel; status.classList.remove('is-pending');
     }
   });
   return () => clearTimeout(slowTimer);

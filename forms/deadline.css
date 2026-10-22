@@ -1,0 +1,13 @@
+#registration-countdown-slot{display:contents}
+.registration-countdown{display:flex;align-items:center;gap:9px;color:#a7211d;flex-shrink:0;text-align:left;line-height:1.3}
+.registration-countdown>svg{width:27px;height:27px;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;flex:none}
+.countdown-label{display:block;font:500 10px/1.4 input-mono,Plex,monospace;letter-spacing:.025em}
+.countdown-digits{display:block;font:400 12px/1.5 input-mono,Plex,monospace;white-space:nowrap;font-variant-numeric:tabular-nums}
+.countdown-digits b{font-weight:600}.countdown-digits>span{font-size:10px}
+.countdown-second{transform-origin:14px 14px;animation:registration-clock-tick 60s steps(60,end) infinite;opacity:.5}
+.is-closed .countdown-second{animation:none}.countdown-digits[hidden]{display:none}
+@keyframes registration-clock-tick{to{transform:rotate(360deg)}}
+@media(max-width:1100px){.masthead:has(.registration-countdown) .masthead-note{display:none}}
+@media(max-width:600px){.masthead:has(.registration-countdown){flex-wrap:wrap;gap:12px}.masthead .registration-countdown{order:3;flex-basis:100%;justify-content:center;padding-top:9px;border-top:1px solid #a7211d18}.registration-countdown>svg{width:24px;height:24px}}
+@media(prefers-reduced-motion:reduce){.countdown-second{animation:none}}
+@media print{.registration-countdown{display:none}}
