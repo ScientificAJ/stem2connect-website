@@ -1,0 +1,140 @@
+/* A compact, progressively enhanced sponsor rail. Brand artwork stays unchanged. */
+.hackathon-page .sponsor-band {
+  position: relative; isolation: isolate; max-width: 1440px; margin: 0 auto;
+  padding: 18px max(5vw, 28px) 22px; scroll-margin-top: 90px;
+}
+.sponsor-band::before {
+  content: ""; position: absolute; z-index: -1; inset: -15px 0; pointer-events: none;
+  background: radial-gradient(ellipse at 16% 50%, #839f2222, transparent 47%), radial-gradient(ellipse at 81% 40%, #62378525, transparent 48%);
+}
+.sponsor-band-heading { display: flex; align-items: center; gap: 20px; margin-bottom: 10px; }
+.hackathon-page .sponsor-band h2 {
+  display: flex; align-items: center; gap: 10px; margin: 0; color: #d8dfcc;
+  font: 500 10px/1.4 var(--font-mono); letter-spacing: .2em; text-transform: uppercase;
+}
+.sponsor-band h2::before { content: ""; width: 23px; height: 1px; background: var(--acid); }
+.sponsor-heading-note { margin-left: auto; color: #b9c7a5; font: 400 16px/1.25 var(--font-handwritten); }
+.sponsor-controls { display: flex; align-items: center; gap: 5px; }
+.sponsor-controls[hidden] { display: none; }
+.sponsor-count { margin-right: 8px; color: #bac6ae; font: 400 9px/1.4 var(--font-mono); white-space: nowrap; }
+.sponsor-controls button {
+  display: grid; place-items: center; width: 34px; height: 34px; padding: 0;
+  border: 1px solid #a9c36570; border-radius: 3px; background: #171e17; color: #d5ed9b; cursor: pointer;
+}
+.sponsor-controls button:hover:not(:disabled) { background: #293620; border-color: #d2ed93; }
+.sponsor-controls button:disabled { opacity: .35; cursor: default; }
+.sponsor-controls svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.2; }
+.sponsor-rail {
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(660px, calc(100% - 28px));
+  align-items: stretch; gap: 14px; overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #91a65c #10180f;
+  padding: 1px 1px 6px; scroll-padding-inline: 1px;
+}
+.sponsor-rail:not(:has(> .sponsor-feature:nth-child(2))) { grid-auto-columns: 100%; }
+.sponsor-feature {
+  position: relative; display: grid; grid-template-columns: 106px minmax(0, 1fr) 120px;
+  align-items: center; gap: 18px; padding: 12px; min-width: 0;
+  border: 1px solid #b2c78b66; border-radius: 4px 14px 4px 14px; overflow: hidden;
+  background:
+    radial-gradient(ellipse at 100% 0%, #80508c65, transparent 54%),
+    radial-gradient(ellipse at 85% 130%, #24847955, transparent 55%),
+    radial-gradient(ellipse at 8% 5%, #adcb412d, transparent 40%),
+    linear-gradient(112deg, #1d291a, #111b17 45%, #191927);
+  box-shadow: inset 0 1px #e1f3c50f; isolation: isolate; scroll-snap-align: start;
+}
+.sponsor-feature:only-child { grid-template-columns: 106px minmax(0, 1fr) 190px; gap: 30px; }
+.sponsor-feature::before {
+  content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; opacity: .45;
+  background: repeating-linear-gradient(130deg, transparent 0 70px, #d2ffe807 71px, transparent 72px 142px);
+}
+.sponsor-feature::after {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, #c7e67b, #7dccad99 48%, #cb8ce4);
+}
+.sponsor-brand {
+  display: grid; place-items: center; position: relative; width: 106px; height: 106px; overflow: hidden;
+  border: 1px solid #ffffff30; border-radius: 3px 9px 3px 9px;
+  background: var(--sponsor-brand-bg, #fff); color: var(--sponsor-brand-ink, #191c16);
+  box-shadow: 0 0 24px #bed56716; transition: transform .25s, box-shadow .25s;
+}
+.sponsor-brand::after { content: ""; position: absolute; inset: 5px; border: 1px solid currentColor; border-radius: 1px 5px 1px 5px; opacity: .16; pointer-events: none; }
+.sponsor-logo-stage { display: grid; place-items: center; width: 100%; height: 100%; }
+.sponsor-logo-stage img { display: block; width: 104px; height: 104px; object-fit: contain; }
+.sponsor-brand-link { position: absolute; bottom: 8px; display: inline-flex; align-items: center; gap: 14px; color: inherit; font: 600 9px/1 var(--font-mono); }
+.sponsor-brand-link svg { width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.sponsor-brand:hover { transform: translateY(-1px); box-shadow: 0 0 28px #c6e67a38; }
+.sponsor-band :is(a, button):focus-visible, .sponsor-rail:focus-visible { outline: 2px solid var(--acid); outline-offset: -3px; }
+.sponsor-story { min-width: 0; }
+.sponsor-eyebrow { display: flex; align-items: center; gap: 7px; margin: 0 0 5px; color: #bfd89a; font: 400 8px/1.4 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; }
+.sponsor-eyebrow > span { width: 4px; height: 4px; background: #d6f19b; border-radius: 50%; box-shadow: 0 0 8px #b6d45360; }
+.hackathon-page .sponsor-story h3 { margin: 0 0 5px; color: #f0f1df; font: 500 clamp(21px, 2vw, 27px)/1.08 var(--font-technical-display); letter-spacing: -.03em; text-wrap: balance; }
+.sponsor-description { max-width: 520px; margin: 0; color: #c2cdbe; font: 400 13px/1.45 var(--font-body); }
+.sponsor-domain-study { display: flex; align-items: center; gap: 10px; margin-top: 9px; }
+.sponsor-route { flex: 0 1 42px; width: 42px; height: 16px; fill: none; stroke: #b0d877; stroke-width: 1; stroke-dasharray: 145; }
+.sponsor-example { display: inline-flex; align-items: center; color: #c7d7c7; font: 400 11px/1 var(--font-mono); white-space: nowrap; }
+.sponsor-example > span { color: #d4ee80; }
+.sponsor-example > i { width: 1px; height: 12px; margin-left: 4px; background: #d7efab; opacity: .6; }
+.sponsor-domain-note { color: #c5d1b7; font: 400 14px/1 var(--font-handwritten); transform: rotate(-3deg); white-space: nowrap; }
+.sponsor-contribution { display: flex; flex-direction: column; align-items: flex-start; border-left: 1px solid #c3dab62e; padding-left: 16px; }
+.sponsor-quantity { display: flex; align-items: center; gap: 10px; }
+.sponsor-quantity > strong { color: #d7f2a0; font: 500 52px/.95 var(--font-technical-display); letter-spacing: -.06em; font-variant-numeric: lining-nums tabular-nums; }
+.sponsor-quantity > span { color: #bfccb5; font: 400 9px/1.5 var(--font-mono); }
+.sponsor-quantity b { color: #eef3df; font-weight: 400; white-space: nowrap; }
+.sponsor-domain-grid { width: 84px; height: 26px; margin: 6px 0 4px; fill: #c8e387; opacity: .8; }
+.sponsor-domain-grid rect:nth-child(5n) { fill: #bc8ac9; }
+.sponsor-contribution > p { margin: 0; color: #c0d1b4; font: 400 7px/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; white-space: nowrap; }
+.sponsor-feature:not(:only-child) .sponsor-quantity { flex-wrap: wrap; gap: 5px 8px; }
+.sponsor-feature:not(:only-child) .sponsor-quantity > strong { font-size: 44px; }
+.sponsor-feature:not(:only-child) .sponsor-domain-note { display: none; }
+.hackathon-page footer .footer-sponsors-link { font: inherit; color: #bfcaaa; text-decoration: underline; text-underline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .sponsor-feature.is-in-view .sponsor-route { animation: sponsor-route-draw 1.1s both; }
+  .sponsor-feature.is-in-view .sponsor-domain-grid { animation: sponsor-grid-arrive .7s .15s both; }
+  .sponsor-feature.is-in-view .sponsor-example > i { animation: sponsor-caret .9s step-end 3; }
+  @keyframes sponsor-route-draw { from { stroke-dashoffset: 145; } to { stroke-dashoffset: 0; } }
+  @keyframes sponsor-grid-arrive { from { opacity: .15; } to { opacity: .8; } }
+  @keyframes sponsor-caret { 50% { opacity: 0; } }
+}
+@media (max-width: 800px) {
+  .sponsor-feature:only-child { grid-template-columns: 106px minmax(0, 1fr) 130px; gap: 18px; }
+  .sponsor-quantity { gap: 8px; }
+  .sponsor-quantity > strong { font-size: 40px; }
+  .sponsor-quantity > span { font-size: 8px; }
+  .sponsor-contribution { padding-left: 12px; }
+  .sponsor-domain-note { display: none; }
+  .sponsor-heading-note { font-size: 14px; }
+}
+@media (max-width: 600px) {
+  .hackathon-page .sponsor-band { padding: 16px 22px 18px; scroll-margin-top: 80px; }
+  .sponsor-band-heading { flex-wrap: wrap; gap: 8px; }
+  .sponsor-heading-note { max-width: 180px; text-align: right; font-size: 13px; }
+  .sponsor-band:has(.sponsor-feature:nth-child(2)) .sponsor-heading-note { display: none; }
+  .sponsor-controls { margin-left: auto; }
+  .sponsor-controls button { width: 40px; height: 40px; }
+  .sponsor-feature, .sponsor-feature:only-child { grid-template-columns: 90px minmax(0, 1fr); gap: 12px; padding: 12px; }
+  .sponsor-brand { width: 90px; height: 96px; }
+  .sponsor-logo-stage img { width: 88px; height: 88px; }
+  .sponsor-brand-link { bottom: 7px; font-size: 8px; gap: 10px; }
+  .hackathon-page .sponsor-story h3 { font-size: 21px; }
+  .sponsor-description { font-size: 12px; line-height: 1.45; }
+  .sponsor-domain-study { gap: 6px; }
+  .sponsor-route { flex-basis: 24px; width: 24px; }
+  .sponsor-example { font-size: 9px; }
+  .sponsor-contribution { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; gap: 8px; border-left: 0; border-top: 1px solid #c3dab62e; padding: 8px 0 0; }
+  .sponsor-quantity { gap: 8px; }
+  .sponsor-quantity > strong, .sponsor-feature:not(:only-child) .sponsor-quantity > strong { font-size: 35px; }
+  .sponsor-quantity > span { font-size: 8px; }
+  .sponsor-domain-grid { width: 58px; height: 26px; margin: 0; }
+  .sponsor-contribution > p { max-width: 58px; white-space: normal; font-size: 6px; }
+}
+@media (max-width: 360px) {
+  .hackathon-page .sponsor-band { padding-inline: 16px; }
+  .sponsor-heading-note { max-width: 140px; font-size: 12px; }
+  .sponsor-feature, .sponsor-feature:only-child { grid-template-columns: 76px minmax(0, 1fr); gap: 10px; }
+  .sponsor-brand { width: 76px; height: 90px; }
+  .sponsor-logo-stage img { width: 74px; height: 74px; }
+  .hackathon-page .sponsor-story h3 { font-size: 19px; }
+  .sponsor-domain-study { display: none; }
+  .sponsor-domain-grid { width: 48px; }
+}
+@media (prefers-reduced-motion: reduce) { .sponsor-brand { transition: none; } .sponsor-brand:hover { transform: none; } }
